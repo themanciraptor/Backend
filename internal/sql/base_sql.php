@@ -1,4 +1,5 @@
 <?
+//TODO: Create better documentation
 
 /* Sql is used for interfacing with the sql database */
 class Sql {
