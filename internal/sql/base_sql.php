@@ -21,7 +21,7 @@ class Sql {
         $this->db->close();
     }
 
-    function update_query(string $query, string $typeList, &...$params): bool {
+    function mutator_query(string $query, string $typeList, &...$params): bool {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
         $res = $stmt->execute();
@@ -31,7 +31,7 @@ class Sql {
     }
 
     /* fetch_query returns an iterator so that the client can process each row individually */
-    function fetch_query(string $query, string $typeList, &...$params): Iterator {
+    function accessor_query(string $query, string $typeList, &...$params): Iterator {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
         $stmt->execute();
