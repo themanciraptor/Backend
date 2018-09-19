@@ -2,4 +2,4 @@
 The Avengers!
 
 # Purpose
-To be a shitty backaned
+To be a shitty backend written in PHP
