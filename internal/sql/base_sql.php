@@ -1,11 +1,49 @@
 <?
-//TODO: Create better documentation
+/**
+ * Package SQL is a simple class that abstracts away database connection logic. The intent
+ * is that it allows the creation of good code a lot faster.
+ * 
+ * @author: Ezra Carter
+ * 
+ * Examples:
+ * 
+ *  Given the class Vector:
+ *      class Vector {
+ *          public $magnitude = 0;
+ *          public $direction = 0;
+ *      
+ *          __construct($magnitude, $direction) {
+ *              $this->magnitude = $magnitude;
+ *              $this->direction = $direction;
+ *          }
+ *      }
+ *  
+ *  Mutate Usage:
+ *      $query = "INSERT INTO vectors (direction, magnitude) VALUES (?, ?)";
+ *      $db = Sql("example_db");
+ *      $db->mutator_query(&query, "ii", 5, 20); // That's It!
+ *  
+ *  Accessor Usage:
+ *      $query = "SELECT direction, magnitude FROM vectors WHERE direction > ? AND magnitude > ?";
+ *      
+ *      $db = Sql("example_db");
+ *      $ite = $db->accessor_query(&query, "ii", 5, 20);
+ *      
+ *      $direction = $magnitude = 0;
+ *      $ite->scan($direction, $magnitude);
+ *      $vectors = [];
+ *      while($ite->next()) {
+ *          $vectors[] = new Vector($direction, $magnitude);
+ *      }
+ * 
+ * **/
+
 
 /* Sql is used for interfacing with the sql database */
 class Sql {
     private $db;
 
-    function __construct($db_name) {
+    function __construct($db_name="student") {
         $address = "localhost";
         $user = "temp_user"; //TODO: Set for our server 
         $password = "temp_password"; // TODO: Set for server
@@ -21,7 +59,7 @@ class Sql {
         $this->db->close();
     }
 
-    function mutator_query(string $query, string $typeList, &...$params): bool {
+    function mutator_query(string $query, string $typeList, ...$params): bool {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
         $res = $stmt->execute();
@@ -36,7 +74,7 @@ class Sql {
         $stmt->bind_param($typeList, ...$params);
         $stmt->execute();
 
-        return Iterator($stmt);
+        return new Iterator($stmt);
     }
 }
 
