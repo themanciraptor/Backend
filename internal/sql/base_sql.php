@@ -6,8 +6,8 @@ class Sql {
 
     function __construct($db_name) {
         $address = "localhost";
-        $user = "temp_user";
-        $password = "temp_password";
+        $user = "temp_user"; //TODO: Set for our server 
+        $password = "temp_password"; // TODO: Set for server
 
         $this->db = mysqli_connect($address, $user, $password, $db_name);
 
