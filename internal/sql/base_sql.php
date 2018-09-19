@@ -9,17 +9,65 @@ class Sql {
         $user = "temp_user";
         $password = "temp_password";
 
-        $this->$db = mysqli_connect($address, $user, $password, $db_name);
+        $this->db = mysqli_connect($address, $user, $password, $db_name);
 
-        if ($db->connect_error) {
-            die("Connection failed: " . $db->connect_error);
+        if ($this->db->connect_error) {
+            die("Connection failed: " . $this->db->connect_error);
         }
     }
 
-    function query(string $query, string $typeList, ...$params) {
-        $stmt = $db->prepare($query);
-        $stmt->bind_param($typeList, ...$params);
+    function __destruct() {
+        $this->db->close();
     }
+
+    function update_query(string $query, string $typeList, &...$params): int {
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($typeList, ...$params);
+        $stmt->execute();
+        $stmt->close();
+
+        // TODO: return the number of rows affected
+        return 0;
+    }
+
+    /* fetch_query returns an iterator so that the client can process each row individually */
+    function fetch_query(string $query, string $typeList, array &$result_vars, &...$params): Iterator {
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param($typeList, ...$params);
+        $stmt->execute();
+
+        return Iterator($stmt);
+    }
+}
+
+class Iterator {
+    private $stmt;
+    private $bound_variables = false;
+
+    function __construct($stmt) {
+        $this->stmt = $stmt;
+    }
+
+    /* set up the value receivers for all row fields */
+    function scan(&...$params) {
+        $this->bound_variables = $stmt->bind_result(...$params);
+        if (!$this->bound_variables) {
+            throw new Exception('Unable to bind receivers to result schema');
+        }
+    }
+
+    function next(): bool {
+        if(!$bound_variables) {
+            /* Throw an error if client does not setup value receivers for a row first. */
+            throw new Exception('No result receivers set to hold sql row.');
+        }
+        $fetched = $stmt->fetch();
+        if(!$fetched) {
+            $stmt->close();
+        }
+
+        return $fetched;
+    } 
 }
 
 ?>
