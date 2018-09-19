@@ -20,14 +20,13 @@ class Sql {
         $this->db->close();
     }
 
-    function update_query(string $query, string $typeList, &...$params): int {
+    function update_query(string $query, string $typeList, &...$params): bool {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
-        $stmt->execute();
+        $res = $stmt->execute();
         $stmt->close();
 
-        // TODO: return the number of rows affected
-        return 0;
+        return $res;
     }
 
     /* fetch_query returns an iterator so that the client can process each row individually */
