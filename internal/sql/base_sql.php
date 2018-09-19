@@ -31,7 +31,7 @@ class Sql {
     }
 
     /* fetch_query returns an iterator so that the client can process each row individually */
-    function fetch_query(string $query, string $typeList, array &$result_vars, &...$params): Iterator {
+    function fetch_query(string $query, string $typeList, &...$params): Iterator {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
         $stmt->execute();
