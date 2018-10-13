@@ -20,7 +20,9 @@ return [
     //
     // Thus, both first-party and third-party code being used by
     // your application should be included in this list.
-    'directory_list' => [],
+    'directory_list' => [
+        'internal'
+    ],
 
     // A directory list that defines files that will be excluded
     // from static analysis, but whose class and method
@@ -36,4 +38,16 @@ return [
     "exclude_analysis_directory_list" => [
         'vendor/'
     ],
+
+    // Set to true in order to attempt to detect dead
+    // (unreferenced) code. Keep in mind that the
+    // results will only be a guess given that classes,
+    // properties, constants and methods can be referenced
+    // as variables (like `$class->$property` or
+    // `$class->$method()`) in ways that we're unable
+    // to make sense of.
+    'dead_code_detection' => true,
+
+    // Include a progress bar in the output.
+    'progress_bar' => true,
 ];

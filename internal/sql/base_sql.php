@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Package SQL is a simple class that abstracts away database connection logic. The intent
  * is that it allows the creation of good code a lot faster.
@@ -35,15 +35,17 @@
  *      while($ite->next()) {
  *          $vectors[] = new Vector($direction, $magnitude);
  *      }
- * 
  * **/
 
 
-/* Sql is used for interfacing with the sql database */
-class Sql {
-    private $db;
+// Sql is used for interfacing with the sql database
+class Sql
+{
+    private $_db;
 
-    function __construct($db_name="student") {
+    // Constructor with the db name
+    function __construct($db_name="student") 
+    {
         $address = "localhost";
         $user = "temp_user"; //TODO: Set for our server 
         $password = "temp_password"; // TODO: Set for server
@@ -55,11 +57,14 @@ class Sql {
         }
     }
 
-    function __destruct() {
+    // default destructor
+    function __destruct() 
+    {
         $this->db->close();
     }
 
-    function mutator_query(string $query, string $typeList, ...$params): bool {
+    function mutatorQuery(string $query, string $typeList, ...$params): bool 
+    {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
         $res = $stmt->execute();
@@ -68,8 +73,9 @@ class Sql {
         return $res;
     }
 
-    /* fetch_query returns an iterator so that the client can process each row individually */
-    function accessor_query(string $query, string $typeList, &...$params): Iterator {
+    // accessorQuery returns an iterator so that the client can process each row individually
+    function accessorQuery(string $query, string $typeList, &...$params): Iterator 
+    {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param($typeList, ...$params);
         $stmt->execute();
@@ -78,31 +84,42 @@ class Sql {
     }
 }
 
-class Iterator {
-    private $stmt;
-    private $bound_variables = false;
+class Iterator
+{
+    private $_stmt;
+    private $_bound_variables = false;
 
-    function __construct($stmt) {
+    // Create an iterator with the connection to a 
+    // database using a prepared statement
+    function __construct($stmt) 
+    {
         $this->stmt = $stmt;
     }
 
-    /* set up the value receivers for all row fields */
-    function scan(&...$params) {
+    // set up the value receivers for all row fields
+    function scan(&...$params) 
+    {
         $this->bound_variables = $stmt->bind_result(...$params);
         if (!$this->bound_variables) {
             throw new Exception('Unable to bind receivers to result schema');
         }
     }
 
-    function next(): bool {
-        if(!$bound_variables) {
-            /* Throw an error if client does not setup value receivers for a row first. */
+    // Retrieve the next row
+    function next(): bool 
+    {
+        if (!$bound_variables) {
+            /*
+            Throw an error if client does not setup value receivers for a row first.
+            */
             throw new Exception('No result receivers set to hold sql row.');
         }
         $fetched = $stmt->fetch();
-        if(!$fetched) {
+        if (!$fetched) {
             $stmt->close();
         }
+
+        $x = $a;
 
         return $fetched;
     } 
