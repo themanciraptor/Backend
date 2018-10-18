@@ -15,5 +15,5 @@ To be a shitty backend written in PHP
 ### Setup Git User
 1. `CREATE USER 'git'@'localhost' IDENTIFIED BY 'gitcommitpassward';`
 2. `GRANT ALL PRIVILEGES ON *.* TO 'git'@'localhost' WITH GRANT OPTION;`
-3. Open db_setup.sh replace all instances of `[path to backend repo]` with the directory where the git repository is stored. For example, mine is at `~/Documents/Backend`
+3. Open db_setup.sh replace all instances of `[path to backend repo]` with the directory where the git repository is stored. For example, mine is at `~/Documents/Backend`. Please look at the script and ensure that it is not overwriting any files you have already setup.
 4. run the db setup command `sh db_setup.sh`
