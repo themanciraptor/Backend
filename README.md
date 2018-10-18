@@ -10,7 +10,7 @@ To be a shitty backend written in PHP
 3. On the commandline run `composer install`
 
 ## Setup local mysql db:
-1. Install mysql if it is not already installed: `sudo apt-get install mysql-server`
+1. Install mysql if not already installed: `sudo apt-get install mysql-server`
 2. `sudo mysql`
 ### Setup Git User
 1. `CREATE USER 'git'@'localhost' IDENTIFIED BY 'gitcommitpassward';`
