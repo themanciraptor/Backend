@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "#!/bin/bash
-mysqldump --skip-extended-insert SASMA > ~/Documents/Backend/SASMA.sql
-cd ~/Documents/Backend
+mysqldump --skip-extended-insert SASMA > ~[path to backend repo]/SASMA.sql
+cd ~[path to backend repo]
 git add SASMA.sql" > ./.git/hooks/pre-commit
 
 echo "#!/bin/bash
-mysql SASMA < ../../SASMA.sql" > ./.git/hooks/post-merge
+mysql SASMA < [path to Backend repo]/SASMA.sql" > ./.git/hooks/post-merge
 
 echo "[mysqldump]
 user=\"git\"

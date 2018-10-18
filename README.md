@@ -10,10 +10,10 @@ To be a shitty backend written in PHP
 3. On the commandline run `composer install`
 
 ## Setup local mysql db:
-#### Note: These steps are tentative pending further investigation
-1. `sudo apt-get install mysql-server`
+1. Install mysql if it is not already installed: `sudo apt-get install mysql-server`
 2. `sudo mysql`
 ### Setup Git User
 1. `CREATE USER 'git'@'localhost' IDENTIFIED BY 'gitcommitpassward';`
 2. `GRANT ALL PRIVILEGES ON *.* TO 'git'@'localhost' WITH GRANT OPTION;`
+3. Open db_setup.sh replace all instances of `[path to backend repo]` with the directory where the git repository is stored. For example, mine is at `~/Documents/Backend`
 4. run the db setup command `sh db_setup.sh`
