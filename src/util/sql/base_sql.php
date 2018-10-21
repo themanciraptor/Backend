@@ -21,7 +21,7 @@
  *  Mutate Usage:
  *      $query = "INSERT INTO vectors (direction, magnitude) VALUES (?, ?)";
  *      $db = new Sql("example_db");
- *      $db->mutator_query(&query, "ii", 5, 20); // That's It!
+ *      $db->mutatorQuery(&query, "ii", 5, 20); // That's It!
  *  
  *  Accessor Usage:
  *        $query = "SELECT direction, magnitude FROM vectors WHERE direction > ? AND magnitude > ?";
