@@ -66,7 +66,9 @@ class Sql
     function mutatorQuery(string $query, string $typeList, ...$params): bool 
     {
         $stmt = $this->_db->prepare($query);
-        $stmt->bind_param($typeList, ...$params);
+        if (count($params) > 0) {
+            $stmt->bind_param($typeList, ...$params);
+        }
         $res = $stmt->execute();
         $stmt->close();
 
@@ -74,13 +76,15 @@ class Sql
     }
 
     // accessorQuery returns an iterator so that the client can process each row individually
-    function accessorQuery(string $query, string $typeList, &...$params): RowIterator 
+    function accessorQuery(string $query, string $typeList, ...$params): RowIterator 
     {
         $stmt = $this->_db->prepare($query);
         if (count($params) > 0) { 
             $stmt->bind_param($typeList, ...$params);
         }
         $stmt->execute();
+        // Store the result so that we can know how many values are returned
+        $stmt->store_result();
 
         return new RowIterator($stmt);
     }
@@ -123,6 +127,7 @@ class RowIterator
             $this->_stmt->close();
         }
 
+        // Added type cast since stmt->fetch() returns null when there is no more data :|
         return (bool)$fetched;
     } 
 }
