@@ -47,8 +47,8 @@ class Sql
     function __construct($db_name="SASMA") 
     {
         $address = "localhost";
-        $user = "sasmaprojectuser"; //TODO: Set for our server 
-        $password = "Where lilies fly, pure maidens doth cry"; // TODO: Set for server
+        $user = "sasmaprojectuser";
+        $password = "Where lilies fly, pure maidens doth cry";
 
         $this->_db = mysqli_connect($address, $user, $password, $db_name);
 
