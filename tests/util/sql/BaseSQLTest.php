@@ -1,5 +1,5 @@
 <?php
-require "src/util/sql/base_sql.php";
+require "src/util/sql/BaseSQL.php";
 use PHPUnit\Framework\TestCase;
 
 class TestTable {
@@ -97,8 +97,6 @@ final class TestBaseSQL extends TestCase {
 
         $ite->scan($resultObject->int_field, $resultObject->string_field,$resultObject->date_field);
         $ite->next();
-
-        echo "\nint field: ", $resultObject->int_field;
 
         $this->assertEquals($expectedObject, $resultObject);
     }
