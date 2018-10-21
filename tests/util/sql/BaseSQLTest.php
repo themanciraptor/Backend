@@ -29,7 +29,8 @@ final class TestBaseSQL extends TestCase {
         self::$dbh = null;
     }
 
-    function test_SqlClassCreatesDBConnection() {
+    function test_SqlClassCreatesDBConnection()
+    {
         $ite = $this::$dbh->accessorQuery($this::getCountQuery, "s", 'CanIterateOverMultiRowResponse');
          
         $count = 0;
@@ -39,7 +40,8 @@ final class TestBaseSQL extends TestCase {
         $this->assertGreaterThan(0, $count);
     }
 
-    function test_CanIterateOverMultiRowResponse() {
+    function test_CanIterateOverMultiRowResponse()
+    {
         $test_name = "CanIterateOverMultiRowResponse";
         $ite = $this::$dbh->accessorQuery($this::getRowsQuery, "s", $test_name);
 
@@ -59,7 +61,8 @@ final class TestBaseSQL extends TestCase {
         }
     }
 
-    function test_CanInsertAndDeleteData() {
+    function test_CanInsertAndDeleteData()
+    {
         $test_name = 'CanInsertAndDeleteData';
 
         // insert the value
@@ -90,7 +93,8 @@ final class TestBaseSQL extends TestCase {
         $this->assertEquals(0, $count);
     }
 
-    function test_CanUseObjectsForQueryParams() {
+    function test_CanUseObjectsForQueryParams()
+    {
         $resultObject = new TestTable(0, "", "");
         $expectedObject = new TestTable(55, "turnaroundbrighteyes", '2018-03-01');
         $ite = $this::$dbh->accessorQuery($this::getRowsQuery, "s", "CanUseListsForQueryParams");
