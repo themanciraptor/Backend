@@ -36,10 +36,10 @@
  *          $vectors[] = new Vector($direction, $magnitude);
  *      }
  * **/
-
+include 'sql.interface.php';
 
 // Sql is used for interfacing with the sql database
-class Sql
+class Sql implements SqlInterface
 {
     private $_db;
 
@@ -76,7 +76,7 @@ class Sql
     }
 
     // accessorQuery returns an iterator so that the client can process each row individually
-    function accessorQuery(string $query, string $typeList, ...$params): RowIterator 
+    function accessorQuery(string $query, string $typeList, ...$params): RowIteratorInterface
     {
         $stmt = $this->_db->prepare($query);
         if (count($params) > 0) { 
@@ -90,7 +90,7 @@ class Sql
     }
 }
 
-class RowIterator
+class RowIterator implements RowIteratorInterface
 {
     private $_stmt;
     private $_bound_variables = false;
