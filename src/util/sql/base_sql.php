@@ -24,17 +24,17 @@
  *      $db->mutatorQuery(&query, "ii", 5, 20); // That's It!
  *  
  *  Accessor Usage:
-*       $query = "SELECT direction, magnitude FROM vectors WHERE direction > ? AND magnitude > ?";
-*       
-*       $db = new Sql("example_db");
-*       $ite = $db->accessorQuery(&query, "ii", 5, 20);
-*       
-*       $direction = $magnitude = 0;
-*       $ite->scan($direction, $magnitude);
-*       $vectors = [];
-*       while($ite->next()) {
-*           $vectors[] = new Vector($direction, $magnitude);
-*       }
+ *      $query = "SELECT direction, magnitude FROM vectors WHERE direction > ? AND magnitude > ?";
+ *      
+ *      $db = new Sql("example_db");
+ *      $ite = $db->accessorQuery(&query, "ii", 5, 20);
+ *      
+ *      $direction = $magnitude = 0;
+ *      $ite->scan($direction, $magnitude);
+ *      $vectors = [];
+ *      while($ite->next()) {
+ *          $vectors[] = new Vector($direction, $magnitude);
+ *      }
  * **/
 
 
