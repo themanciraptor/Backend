@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "#!/bin/bash
 mysqldump --skip-extended-insert SASMA > [path to backend repo]/SASMA.sql
-mysqldump --skip-extended-insert SASMA > [path to backend repo]/SASMA_test.sql
+mysqldump --skip-extended-insert SASMA_test > [path to backend repo]/SASMA_test.sql
 cd [path to backend repo]
 git add SASMA.sql
 git add SASMA_test.sql
