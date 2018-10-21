@@ -39,6 +39,7 @@ LOCK TABLES `TestTable` WRITE;
 INSERT INTO `TestTable` VALUES (1,'t1','2017-01-01','CanIterateOverMultiRowResponse');
 INSERT INTO `TestTable` VALUES (2,'t2','2017-02-01','CanIterateOverMultiRowResponse');
 INSERT INTO `TestTable` VALUES (3,'t4','2017-03-01','CanIterateOverMultiRowResponse');
+INSERT INTO `TestTable` VALUES (55,'turnaroundbrighteyes','2018-03-01','CanUseListsForQueryParams');
 /*!40000 ALTER TABLE `TestTable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-21  5:43:02
+-- Dump completed on 2018-10-21  6:47:05
