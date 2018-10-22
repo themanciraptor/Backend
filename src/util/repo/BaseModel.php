@@ -9,13 +9,6 @@
     protected $_created = "";
     protected $_updated = "";
     protected $_deleted = "";
-    
-    function __construct($created, $updated, $deleted)
-    {
-        $_created = $created;
-        $_updated = $updated;
-        $_deleted = $deleted;
-    }
 
     function getDeleted(): string
     {
