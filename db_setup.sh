@@ -9,7 +9,8 @@ git add SASMA_test.sql
 
 echo "#!/bin/bash
 mysql SASMA < [path to Backend repo]/SASMA.sql
-mysql SASMA_test < [path to Backend repo]/SASMA_test.sql" > ./.git/hooks/post-merge
+mysql SASMA_test < [path to Backend repo]/SASMA_test.sql
+mysql SASMA_test < [path to Backend repo]/SASMA.sql" > ./.git/hooks/post-merge
 
 echo "[mysqldump]
 user=\"git\"
