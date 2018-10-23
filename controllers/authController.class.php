@@ -11,17 +11,11 @@ class AuthController extends Controller {
     }
 
     /*
-        implemented for the sake of implementing
-    */
-    public function process() {
-    }
-
-    /*
         process() : checks whether the user is authorized; if not, tries to authorize
         throws : Unauthorized exception on inability to authorize
     */
-    public function authorize() {
-        if (!$this->authorized() && !$this->authorizeHelper()) {
+    public function process() {
+        if (!$this->authorized() && !$this->authorize()) {
             throw new Exception('Unauthorized');
         }
     }
@@ -40,16 +34,17 @@ class AuthController extends Controller {
     /*
         authorizeHelper() : authorizes an unauthorized user
     */
-    private function authorizeHelper() {
+    private function authorize() {
         if ($this->getMethod() != 'POST' && $this->getPath()[0] != 'login') {
             throw new Exception('Unauthorized');
         }
-        $_SESSION['USER_EMAIL'] = array_key_exists('email', $this->getBody()) ? $this->getBody()['email'] : null;
-        $password = array_key_exists('password', $this->getBody()) ? $this->getBody()['password'] : null;
+        //throws error when email or password don't exist
+        $_SESSION['USER_EMAIL'] = $this->getBody()['email'];
+        $password = $this->getBody()['password'];
+        //TODO get password hash from database and throw an error if it doesn't match
         if ($password === null) {
             throw new Exception('Unauthorized');
         }
-        //TODO get password hash from database and throw an error if it doesn't match
         $this->getToken();
         $_SESSION['USER_TOKEN'] = session_id();
         return true;

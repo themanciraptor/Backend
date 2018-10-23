@@ -8,7 +8,7 @@ require_once 'controllers/userController.class.php';
 
 function session_control_start() {
     session_start();
-    // No old session IDs
+    // No old session IDs allowed
     if (array_key_exists('TIMEOUT', $_SERVER) && $_SESSION['TIMEOUT'] < time() - 180) {
         session_destroy();
         session_start();
@@ -24,9 +24,10 @@ ini_set('session.use_strict_mode', 1);
 session_control_start();
 
 try {
-    $auth->authorize();
+    $auth->process();
     switch ($auth->getPath()[0]) {
-        case 'login': break;
+        case 'login': 
+            break;
         case 'logout': 
             $auth->deauthorize();
             break;
