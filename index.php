@@ -27,6 +27,9 @@ try {
     $auth->authorize();
     switch ($auth->getPath()[0]) {
         case 'login': break;
+        case 'logout': 
+            $auth->deauthorize();
+            break;
         case 'student':
             $student = new StudentController($_SERVER['REQUEST_URI']);
             $student->process();

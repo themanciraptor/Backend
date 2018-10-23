@@ -61,7 +61,6 @@ class AuthController extends Controller {
     public function deauthorize() {
         $_SESSION['USER_EMAIL'] = null;
         $_SESSION['USER_TOKEN'] = null;
-        session_destroy();
     }
 
     /*
