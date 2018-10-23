@@ -41,7 +41,6 @@ abstract class Controller {
         $this->method = strtoupper(array_key_exists('HTTP_X_HTTP_METHOD', $_SERVER) ? $_SERVER['HTTP_X_HTTP_METHOD'] : $_SERVER['REQUEST_METHOD']);
         $bodyRaw = file_get_contents("php://input");
         $this->body = json_decode($bodyRaw, true);
-        var_dump($this->body);
     }
 
     /*
