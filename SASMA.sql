@@ -40,7 +40,7 @@ CREATE TABLE `auth` (
 
 LOCK TABLES `auth` WRITE;
 /*!40000 ALTER TABLE `auth` DISABLE KEYS */;
-INSERT INTO `auth` VALUES (0,'password','uid1');
+INSERT INTO `auth` VALUES (0,'password','uid1', '2018-10-18 10:05:58','2018-10-18 10:05:58');
 /*!40000 ALTER TABLE `auth` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `college` (
 
 LOCK TABLES `college` WRITE;
 /*!40000 ALTER TABLE `college` DISABLE KEYS */;
-INSERT INTO `college` VALUES ('University of Regina','3737 Wascana Parkway','UofR');
+INSERT INTO `college` VALUES ('University of Regina','3737 Wascana Parkway','UofR', '2018-10-18 10:05:58','2018-10-18 10:05:58');
 /*!40000 ALTER TABLE `college` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,6 +86,8 @@ CREATE TABLE `programs` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+  FOREIGN KEY (`student_ids`)
+  REFERENCES `sasma`.`student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -95,7 +97,7 @@ CREATE TABLE `programs` (
 
 LOCK TABLES `programs` WRITE;
 /*!40000 ALTER TABLE `programs` DISABLE KEYS */;
-INSERT INTO `programs` VALUES ('Things you already know','CS 372','200361084',50);
+INSERT INTO `programs` VALUES ('Things you already know','CS 372','200361084',50, '2018-10-18 10:05:58','2018-10-18 10:05:58');
 /*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +127,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('200361084','Jonah','Wrubleski','jjwrubleski21@gmail.com','3062318046','Ma house');
+INSERT INTO `student` VALUES ('200361084','Jonah','Wrubleski','jjwrubleski21@gmail.com','3062318046','Ma house', '2018-10-18 10:05:58','2018-10-18 10:05:58');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,6 +147,8 @@ CREATE TABLE `student_term_data` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+  FOREIGN KEY (`college_id`)
+  REFERENCES `sasma`.`college` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -154,7 +158,7 @@ CREATE TABLE `student_term_data` (
 
 LOCK TABLES `student_term_data` WRITE;
 /*!40000 ALTER TABLE `student_term_data` DISABLE KEYS */;
-INSERT INTO `student_term_data` VALUES ('student_id_200361084','CS 372','Enrolled','Fall/2018','UofR');
+INSERT INTO `student_term_data` VALUES ('student_id_200361084','CS 372','Enrolled','Fall/2018','UofR', '2018-10-18 10:05:58','2018-10-18 10:05:58');
 /*!40000 ALTER TABLE `student_term_data` ENABLE KEYS */;
 UNLOCK TABLES;
 
