@@ -75,31 +75,52 @@ UNLOCK TABLES;
 -- Table structure for table `programs`
 --
 
-DROP TABLE IF EXISTS `programs`;
+DROP TABLE IF EXISTS `program`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `programs` (
+CREATE TABLE `program` (
   `name` varchar(60) NOT NULL,
   `id` varchar(20) NOT NULL,
-  `student_ids` varchar(45) DEFAULT NULL,
   `capacity` int(11) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-  FOREIGN KEY (`student_ids`)
-  REFERENCES `sasma`.`student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `programs`
+-- Dumping data for table `program`
 --
 
-LOCK TABLES `programs` WRITE;
-/*!40000 ALTER TABLE `programs` DISABLE KEYS */;
-INSERT INTO `programs` VALUES ('Things you already know','CS 372','200361084',50, '2018-10-18 10:05:58','2018-10-18 10:05:58');
-/*!40000 ALTER TABLE `programs` ENABLE KEYS */;
+LOCK TABLES `program` WRITE;
+/*!40000 ALTER TABLE `program` DISABLE KEYS */;
+INSERT INTO `program` VALUES ('Things you already know','CS 372',50,'2018-10-18 10:05:58','2018-10-18 10:05:58');
+/*!40000 ALTER TABLE `program` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `program_student`
+--
+
+DROP TABLE IF EXISTS `program_student`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `program_student` (
+  `program_id` varchar(30) NOT NULL,
+  `student_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`program_id`,`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `program_student`
+--
+
+LOCK TABLES `program_student` WRITE;
+/*!40000 ALTER TABLE `program_student` DISABLE KEYS */;
+/*!40000 ALTER TABLE `program_student` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `student`
@@ -140,15 +161,14 @@ DROP TABLE IF EXISTS `student_term_data`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `student_term_data` (
   `id` varchar(45) NOT NULL,
-  `courses` varchar(45) NOT NULL,
   `enrollment_status` varchar(45) NOT NULL,
   `term` varchar(45) NOT NULL,
   `college_id` varchar(45) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-  FOREIGN KEY (`college_id`)
-  REFERENCES `sasma`.`college` (`id`)
+  PRIMARY KEY (`id`),
+  KEY `college_id2_idx` (`college_id`),
+  CONSTRAINT `id` FOREIGN KEY (`college_id`) REFERENCES `college` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,8 +178,31 @@ CREATE TABLE `student_term_data` (
 
 LOCK TABLES `student_term_data` WRITE;
 /*!40000 ALTER TABLE `student_term_data` DISABLE KEYS */;
-INSERT INTO `student_term_data` VALUES ('student_id_200361084','CS 372','Enrolled','Fall/2018','UofR', '2018-10-18 10:05:58','2018-10-18 10:05:58');
+INSERT INTO `student_term_data` VALUES ('student_id_200361084','Enrolled','Fall/2018','UofR', '2018-10-18 10:05:58','2018-10-18 10:05:58');
 /*!40000 ALTER TABLE `student_term_data` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `term_data_courses`
+--
+
+DROP TABLE IF EXISTS `term_data_courses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `term_data_courses` (
+  `term_data_id` varchar(30) NOT NULL,
+  `program_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`term_data_id`,`program_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `term_data_courses`
+--
+
+LOCK TABLES `term_data_courses` WRITE;
+/*!40000 ALTER TABLE `term_data_courses` DISABLE KEYS */;
+/*!40000 ALTER TABLE `term_data_courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
