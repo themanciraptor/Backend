@@ -20,7 +20,6 @@ if (!array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 }
 
 $auth = new AuthController($_SERVER['REQUEST_URI']);
-ini_set('session.use_strict_mode', 1);
 session_control_start();
 
 try {
@@ -57,5 +56,4 @@ try {
     echo json_encode(Array('error' => $e->getMessage()));
 }
 
-session_destroy();
 ?>

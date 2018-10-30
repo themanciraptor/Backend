@@ -30,6 +30,9 @@ abstract class Controller {
     public function getBody() {
         return $this->body;
     }
+    public function getValueFromBody($key) {
+        return array_key_exists($key, $this->body) ? $this->body[$key] : null;
+    }
 
     /*
         Constructor : takes request and builds Controller object

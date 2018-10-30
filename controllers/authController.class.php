@@ -26,8 +26,7 @@ class AuthController extends Controller {
     */
     private function authorized() {
         return (
-            array_key_exists('USER_EMAIL', $_SESSION) && $_SESSION['USER_EMAIL'] != null && 
-            array_key_exists('USER_TOKEN', $_SESSION) && $_SESSION['USER_TOKEN'] != null
+            array_key_exists('USER_TOKEN', $_SESSION) && $_SESSION['USER_TOKEN'] != null && $_SESSION['USER_TOKEN'] == session_id()
         );
     }
 
@@ -39,10 +38,10 @@ class AuthController extends Controller {
             throw new Exception('Unauthorized');
         }
         //throws error when email or password don't exist
-        $_SESSION['USER_EMAIL'] = $this->getBody()['email'];
-        $password = $this->getBody()['password'];
+        $email = $this->getValueFromBody('email');
+        $password = $this->getValueFromBody('password');
         //TODO get password hash from database and throw an error if it doesn't match
-        if ($password === null) {
+        if ($email === null || $password === null) {
             throw new Exception('Unauthorized');
         }
         $this->getToken();
@@ -56,6 +55,7 @@ class AuthController extends Controller {
     public function deauthorize() {
         $_SESSION['USER_EMAIL'] = null;
         $_SESSION['USER_TOKEN'] = null;
+        session_destroy();
     }
 
     /*
@@ -65,6 +65,7 @@ class AuthController extends Controller {
     public function getToken() {
         //don't create a new session if a session already exists
         if (session_status() != PHP_SESSION_ACTIVE) {
+            session_destroy();
             session_start();
         }
 
