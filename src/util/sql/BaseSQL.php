@@ -36,7 +36,7 @@
  *          $vectors[] = new Vector($direction, $magnitude);
  *      }
  * **/
-include 'Interface.php';
+require_once 'Interface.php';
 
 // Sql is used for interfacing with the sql database
 class Sql implements SqlInterface

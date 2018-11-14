@@ -9,26 +9,19 @@ require_once "src/util/repo/BaseModel.php";
 
 class User extends BaseModel
 {
+    // Note that these fields must match the order of the columns in sql
+    public $user_id = "";
     public $first_name = "";
     public $last_name = "";
-    public $user_id = "";
     public $email = "";
     
-    function __construct(array $params)
+    function __construct(array $params = [])
     {
-        parent::BaseRepo();
-        foreach ($params as $key => $value) {
-            $this[$key] = $value;
-        }
+        parent::__construct($params);
     }
 
-    public function toRefList(): array
-    {
-        $scanList = [];
-        foreach ($variable as &$value) {
-            array_push($scanList, $value);
-        }
-        return $scanList;
+    function __construct2($user_id, $first_name, $last_name, $email, $created, $updated = null, $deleted = null){
+        
     }
 }
 ?>
