@@ -31,7 +31,7 @@ class UserRepository
     }
 
     // create a user
-    public function create($user_id, $first_name, $last_name, $email)
+    public function create($user_id, $first_name, $last_name, $email): bool
     {
         $usr = new User;
         $usr->user_id = $user_id;
@@ -39,7 +39,7 @@ class UserRepository
         $usr->last_name = $last_name;
         $usr->email = $email;
         $createUserQuery = "INSERT INTO User VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $res = self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList());
+        return self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList());
     }
 }
 
