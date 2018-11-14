@@ -19,9 +19,5 @@ class User extends BaseModel
     {
         parent::__construct($params);
     }
-
-    function __construct2($user_id, $first_name, $last_name, $email, $created, $updated = null, $deleted = null){
-        
-    }
 }
 ?>
