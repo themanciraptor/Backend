@@ -15,13 +15,11 @@ class UserModelTest extends TestCase
 
         // If we change the value, value on object should change
         $refs[0] = $testvar;
-        // self::assertEquals($usr->first_name, $testvar);
+        self::assertEquals($testvar, $usr->first_name);
         
         // If we change the reference, the array should change, but the value on the object should not
         $refs[1] = &$testvar;
-        self::assertNotEquals($usr->last_name, $testvar);
-
-        self::assertNull(date(DATE_ISO8601));
+        self::assertNotEquals($testvar, $usr->last_name);
     }
 }
 ?>
