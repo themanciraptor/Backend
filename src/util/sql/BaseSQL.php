@@ -20,14 +20,14 @@
  *  
  *  Mutate Usage:
  *      $query = "INSERT INTO vectors (direction, magnitude) VALUES (?, ?)";
- *      $db = Sql("example_db");
- *      $db->mutator_query(&query, "ii", 5, 20); // That's It!
+ *      $db = new Sql("example_db");
+ *      $db->mutatorQuery($query, "ii", 5, 20); // That's It!
  *  
  *  Accessor Usage:
  *      $query = "SELECT direction, magnitude FROM vectors WHERE direction > ? AND magnitude > ?";
  *      
- *      $db = Sql("example_db");
- *      $ite = $db->accessor_query(&query, "ii", 5, 20);
+ *      $db = new Sql("example_db");
+ *      $ite = $db->accessorQuery($query, "ii", 5, 20);
  *      
  *      $direction = $magnitude = 0;
  *      $ite->scan($direction, $magnitude);
@@ -36,37 +36,39 @@
  *          $vectors[] = new Vector($direction, $magnitude);
  *      }
  * **/
-
+include 'Interface.php';
 
 // Sql is used for interfacing with the sql database
-class Sql
+class Sql implements SqlInterface
 {
     private $_db;
 
     // Constructor with the db name
-    function __construct($db_name="student") 
+    function __construct($db_name="SASMA") 
     {
         $address = "localhost";
-        $user = "temp_user"; //TODO: Set for our server 
-        $password = "temp_password"; // TODO: Set for server
+        $user = "sasmaprojectuser";
+        $password = "Where lilies fly, pure maidens doth cry";
 
-        $this->db = mysqli_connect($address, $user, $password, $db_name);
+        $this->_db = mysqli_connect($address, $user, $password, $db_name);
 
-        if ($this->db->connect_error) {
-            die("Connection failed: " . $this->db->connect_error);
+        if ($this->_db->connect_error) {
+            die("Connection failed: " . $this->_db->connect_error);
         }
     }
 
     // default destructor
     function __destruct() 
     {
-        $this->db->close();
+        $this->_db->close();
     }
 
     function mutatorQuery(string $query, string $typeList, ...$params): bool 
     {
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param($typeList, ...$params);
+        $stmt = $this->_db->prepare($query);
+        if (count($params) > 0) {
+            $stmt->bind_param($typeList, ...$params);
+        }
         $res = $stmt->execute();
         $stmt->close();
 
@@ -74,33 +76,39 @@ class Sql
     }
 
     // accessorQuery returns an iterator so that the client can process each row individually
-    function accessorQuery(string $query, string $typeList, &...$params): Iterator 
+    function accessorQuery(string $query, string $typeList, ...$params): RowIteratorInterface
     {
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param($typeList, ...$params);
+        $stmt = $this->_db->prepare($query);
+        if (count($params) > 0) { 
+            $stmt->bind_param($typeList, ...$params);
+        }
         $stmt->execute();
+        // Store the result so that we can know how many values are returned
+        $stmt->store_result();
 
-        return new Iterator($stmt);
+        return new RowIterator($stmt);
     }
 }
 
-class Iterator
+class RowIterator implements RowIteratorInterface
 {
     private $_stmt;
     private $_bound_variables = false;
+    public $num_rows = 0;
 
     // Create an iterator with the connection to a 
     // database using a prepared statement
     function __construct($stmt) 
     {
-        $this->stmt = $stmt;
+        $this->_stmt = $stmt;
+        $this->num_rows = $stmt->num_rows;
     }
 
     // set up the value receivers for all row fields
     function scan(&...$params) 
     {
-        $this->bound_variables = $stmt->bind_result(...$params);
-        if (!$this->bound_variables) {
+        $this->_bound_variables = $this->_stmt->bind_result(...$params);
+        if (!$this->_bound_variables) {
             throw new Exception('Unable to bind receivers to result schema');
         }
     }
@@ -108,20 +116,19 @@ class Iterator
     // Retrieve the next row
     function next(): bool 
     {
-        if (!$bound_variables) {
+        if (!$this->_bound_variables) {
             /*
             Throw an error if client does not setup value receivers for a row first.
             */
             throw new Exception('No result receivers set to hold sql row.');
         }
-        $fetched = $stmt->fetch();
+        $fetched = $this->_stmt->fetch();
         if (!$fetched) {
-            $stmt->close();
+            $this->_stmt->close();
         }
 
-        $x = $a;
-
-        return $fetched;
+        // Added type cast since stmt->fetch() returns null when there is no more data :|
+        return (bool)$fetched;
     } 
 }
 
