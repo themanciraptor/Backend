@@ -36,7 +36,7 @@ class UserRepositoryTest extends TestCase
         $first_name = "Quail";
         $last_name = "Eats";
         $email = "QuailEats@humans.com";
-        self::$repo->create($first_name, $last_name, $email, $user_id);
+        $result_id = self::$repo->create($first_name, $last_name, $email, $user_id);
 
         $result = self::$repo->get($user_id);
         $this->assertEquals($first_name, $result->first_name);
@@ -44,6 +44,7 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($email, $result->email);
         $this->assertNotNull($result->getCreated());
         $this->assertNotNull($result->getUpdated());
+        $this->assertEquals($user_id, $result_id);
 
         // Clean up user so that consecutive tests will pass
         // TODO: ideally the table should be setup as part of the test :|
