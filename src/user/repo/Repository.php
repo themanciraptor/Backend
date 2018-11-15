@@ -33,7 +33,7 @@ class UserRepository
     }
 
     // create a user
-    public function create($first_name, $last_name, $email, $user_id = null): string
+    public function create(string $first_name, string $last_name, string $email, string $user_id = null): string
     {
         $usr = new User;
 
