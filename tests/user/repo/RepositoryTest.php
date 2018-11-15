@@ -36,7 +36,7 @@ class UserRepositoryTest extends TestCase
         $first_name = "Quail";
         $last_name = "Eats";
         $email = "QuailEats@humans.com";
-        self::$repo->create($user_id, $first_name, $last_name, $email);
+        self::$repo->create($first_name, $last_name, $email, $user_id);
 
         $result = self::$repo->get($user_id);
         $this->assertEquals($first_name, $result->first_name);
@@ -48,6 +48,11 @@ class UserRepositoryTest extends TestCase
         // Clean up user so that consecutive tests will pass
         // TODO: ideally the table should be setup as part of the test :|
         self::$dbh->mutatorQuery("DELETE FROM User WHERE user_id = ?", "s", $user_id);
+    }
+
+    function test_update_UpdatesAUser()
+    {
+        
     }
 }
 

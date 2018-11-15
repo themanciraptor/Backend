@@ -40,8 +40,18 @@ class UserRepository
         $usr->first_name = $first_name;
         $usr->last_name = $last_name;
         $usr->email = $email;
+
         $createUserQuery = sprintf("INSERT INTO User VALUES (%s)", Sql::getStatementParams(7));
+        
         return self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList());
+    }
+
+    // update a user
+    public function update(User $user): bool
+    {
+        $updateUserQuery = "UPDATE User Set first_name = ?, last_name = ?, email = ?, updated = ? WHERE user_id = ?";
+
+        return self::$db->mutatorQuery($createUserQuery, "ssss", $user->user_id, $user->first_name, $user->last_name, User::getSqlNow(), $user->email);
     }
 }
 
