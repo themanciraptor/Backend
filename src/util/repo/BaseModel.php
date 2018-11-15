@@ -9,9 +9,9 @@ require_once "src/util/sql/Util.php";
 
  class BaseModel
  {
-    protected $_created = "";
-    protected $_modified = "";
-    protected $_deleted = null;
+    private $_created = "";
+    private $_modified = "";
+    private $_deleted = null;
 
     function getDeleted(): string
     {

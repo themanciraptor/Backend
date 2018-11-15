@@ -26,8 +26,7 @@ class UserRepository
         $ite = self::$db->accessorQuery($getUserQuery, "s", $id);
 
         $user = new User;
-        $refs = $user->toRefList();
-        $ite->scan(...$refs);
+        $ite->scan(...$user->toRefList());
         $ite->next();
 
         return $user;
