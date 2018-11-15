@@ -31,21 +31,21 @@ class UserRepositoryTest extends TestCase
 
     function test_create_CreatesAUser()
     {
-        $user_id = "st-000002";
-        $first_name = "Quail";
-        $last_name = "Eats";
+        $userID = "st-000002";
+        $firstName = "Quail";
+        $lastName = "Eats";
         $email = "QuailEats@humans.com";
-        $result_id = self::$repo->create($first_name, $last_name, $email, $user_id);
+        $result_id = self::$repo->create($firstName, $lastName, $email, $userID);
 
-        $result = self::$repo->get($user_id);
-        $this->assertEquals($first_name, $result->first_name);
-        $this->assertEquals($last_name, $result->last_name);
+        $result = self::$repo->get($userID);
+        $this->assertEquals($firstName, $result->first_name);
+        $this->assertEquals($lastName, $result->last_name);
         $this->assertEquals($email, $result->email);
         $this->assertNotNull($result->getCreated());
         $this->assertNotNull($result->getModified());
-        $this->assertEquals($user_id, $result_id);
+        $this->assertEquals($userID, $result_id);
 
-        self::delete($user_id);
+        self::delete($userID);
     }
 
     function test_update_UpdatesAUser()
