@@ -154,8 +154,8 @@ class RowIterator implements RowIteratorInterface
 class SqlPreparedStatementException extends Exception
 {
     /* For exceptions cause by failure of the sql to create a prepared statement query */
-    function __construct(string $message, int $code = 500) {
-        parent::__construct($message, $code);
+    function __construct(string $message, int $code = 500, Exception $previous = null) {
+        parent::__construct($message, $code, $previous);
     }
 }
 
