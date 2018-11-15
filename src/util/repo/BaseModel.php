@@ -1,7 +1,9 @@
 <?php
 /**
- * There are some elements that should be shared by all repositories. This class aims to consolidate them into
+ * There are some elements that should be shared by all models. This class aims to consolidate them into
  * a singled easy to use class. 
+ * 
+ * @author: Ezra Carter
  */
 
  class BaseModel

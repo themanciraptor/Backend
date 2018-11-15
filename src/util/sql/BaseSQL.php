@@ -88,9 +88,9 @@ class Sql implements SqlInterface
 
         return new RowIterator($stmt);
     }
-
         
     // From an int get string containing the number of parameters needed for a prepared statement
+    // e.g. getStatementParams(4) returns "?,?,?,?"
     public static function getStatementParams(int $num): string
     {
         $parameterString = "?";
