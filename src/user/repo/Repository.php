@@ -1,6 +1,8 @@
 <?php
 /**
  * User Repository is for basic data update or access to user table.
+ * 
+ * @author: Ezra Carter
  */
 require_once "src/util/sql/BaseSQL.php";
 require_once "src/user/repo/Repository.php";
@@ -38,7 +40,7 @@ class UserRepository
         $usr->first_name = $first_name;
         $usr->last_name = $last_name;
         $usr->email = $email;
-        $createUserQuery = "INSERT INTO User VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $createUserQuery = sprintf("INSERT INTO User VALUES (%s)", Sql::getStatementParams(7));
         return self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList());
     }
 }

@@ -88,6 +88,18 @@ class Sql implements SqlInterface
 
         return new RowIterator($stmt);
     }
+
+        
+    // From an int get string containing the number of parameters needed for a prepared statement
+    public static function getStatementParams(int $num): string
+    {
+        $parameterString = "?";
+        for ($i = 1; $i < $num; $i++) {
+            $parameterString .= ",?";
+        }
+
+        return $parameterString;
+    }
 }
 
 class RowIterator implements RowIteratorInterface
@@ -129,7 +141,7 @@ class RowIterator implements RowIteratorInterface
 
         // Added type cast since stmt->fetch() returns null when there is no more data :|
         return (bool)$fetched;
-    } 
+    }
 }
 
 ?>
