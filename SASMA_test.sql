@@ -69,10 +69,8 @@ CREATE TABLE `User` (
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
 INSERT INTO `User` VALUES ('st-000001','Carl','Marks','redsocs@rus.com','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
-INSERT INTO `User` VALUES ('st-5becdb9e6df8c','Tiny','Tim','seconds@hotmeal.com','2018-11-15 08:36:14','2018-11-15 08:36:14',NULL);
-INSERT INTO `User` VALUES ('st-5bece00fafc14','Tiny','Tim','seconds@hotmeal.com','2018-11-15 08:55:11','2018-11-15 08:55:11',NULL);
-INSERT INTO `User` VALUES ('st-5bece40163fcc','Tiny','Tim','seconds@hotmeal.com','2018-11-15 09:12:01','2018-11-15 09:12:01',NULL);
-INSERT INTO `User` VALUES ('st-5bece4869fce4','Tiny','Tim','seconds@hotmeal.com','2018-11-15 09:14:14','2018-11-15 09:14:14',NULL);
+INSERT INTO `User` VALUES ('st-5bece70014ee8','Big','Tim','seconds@hotmeal.com','2018-11-15 09:24:48','2018-11-15 09:24:48',NULL);
+INSERT INTO `User` VALUES ('st-5bece79253fdb','Big','Tim','seconds@hotmeal.com','2018-11-15 09:27:14','2018-11-15 09:27:16',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -85,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-14 21:17:57
+-- Dump completed on 2018-11-14 21:30:10
