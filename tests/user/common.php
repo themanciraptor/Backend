@@ -11,7 +11,7 @@ function getExistingUser(): User
         "user_id" => "st-000001",
         "email" => "redsocs@rus.com",
         "_created" => "2018-10-18 04:05:58",
-        "_updated" => "2018-10-18 04:05:58",
+        "_modified" => "2018-10-18 04:05:58",
         "_deleted" => Null
     );
 

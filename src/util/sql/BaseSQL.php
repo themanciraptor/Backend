@@ -63,9 +63,13 @@ class Sql implements SqlInterface
         $this->_db->close();
     }
 
-    function mutatorQuery(string $query, string $typeList, ...$params): bool 
+    function mutatorQuery(string $query, string $typeList, ...$params): bool
     {
         $stmt = $this->_db->prepare($query);
+        if (!$stmt) {
+            throw new SqlPreparedStatementException(sprintf("Unable to prepare mutator query: %s", $this->_db->error));
+        }
+
         if (count($params) > 0) {
             $stmt->bind_param($typeList, ...$params);
         }
@@ -79,6 +83,9 @@ class Sql implements SqlInterface
     function accessorQuery(string $query, string $typeList, ...$params): RowIteratorInterface
     {
         $stmt = $this->_db->prepare($query);
+        if (!$stmt) {
+            throw new SqlPreparedStatementException(sprintf("Unable to prepare accessor query: %s", $this->_db->error));
+        }
         if (count($params) > 0) { 
             $stmt->bind_param($typeList, ...$params);
         }
@@ -141,6 +148,14 @@ class RowIterator implements RowIteratorInterface
 
         // Added type cast since stmt->fetch() returns null when there is no more data :|
         return (bool)$fetched;
+    }
+}
+
+class SqlPreparedStatementException extends Exception
+{
+    /* For exceptions cause by failure of the sql to create a prepared statement query */
+    function __construct(string $message, int $code = 500, Exception $previous = null) {
+        parent::__construct($message, $code, $previous);
     }
 }
 
