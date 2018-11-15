@@ -63,9 +63,13 @@ class Sql implements SqlInterface
         $this->_db->close();
     }
 
-    function mutatorQuery(string $query, string $typeList, ...$params): bool 
+    function mutatorQuery(string $query, string $typeList, ...$params): bool
     {
         $stmt = $this->_db->prepare($query);
+        if (!$stmt) {
+            throw new Exception(sprintf("Unable to prepare query: %s", $this->_db->error));
+        }
+
         if (count($params) > 0) {
             $stmt->bind_param($typeList, ...$params);
         }

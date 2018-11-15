@@ -1,5 +1,6 @@
 <?php
 require "src/util/sql/BaseSQL.php";
+require_once "src/util/sql/Util.php";
 use PHPUnit\Framework\TestCase;
 
 class TestTable {

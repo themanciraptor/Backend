@@ -5,6 +5,7 @@
  * @author: Ezra Carter
  */
 require_once "src/util/sql/BaseSQL.php";
+require_once "src/util/sql/Util.php";
 require_once "src/user/repo/Repository.php";
 require_once "src/util/sql/Interface.php";
 require_once "src/user/model/User.php";
@@ -46,24 +47,20 @@ class UserRepository
         $usr->email = $email;
 
         $createUserQuery = sprintf("INSERT INTO User VALUES (%s)", Sql::getStatementParams(7));
-<<<<<<< HEAD
-        
-        return self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList());
-=======
+
         if(self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList())) {
             return $usr->user_id;
         }
 
         return "";
->>>>>>> ez/user-repo
     }
 
     // update a user
     public function update(User $user): bool
     {
-        $updateUserQuery = "UPDATE User Set first_name = ?, last_name = ?, email = ?, updated = ? WHERE user_id = ?";
+        $updateUserQuery = "UPDATE User SET first_name = ?, last_name = ?, email = ?, modified = ? WHERE user_id = ?";
 
-        return self::$db->mutatorQuery($createUserQuery, "ssss", $user->user_id, $user->first_name, $user->last_name, User::getSqlNow(), $user->email);
+        return self::$db->mutatorQuery($updateUserQuery, "sssss", $user->first_name, $user->last_name, $user->email, getSqlNow(), $user->user_id);
     }
 }
 

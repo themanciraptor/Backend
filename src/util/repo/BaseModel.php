@@ -5,11 +5,12 @@
  * 
  * @author: Ezra Carter
  */
+require_once "src/util/sql/Util.php";
 
  class BaseModel
  {
     protected $_created = "";
-    protected $_updated = "";
+    protected $_modified = "";
     protected $_deleted = null;
 
     function getDeleted(): string
@@ -20,15 +21,15 @@
     {
         return $this->_created;
     }
-    function getUpdated(): string
+    function getModified(): string
     {
-        return $this->_updated;
+        return $this->_modified;
     }
 
     function __construct(array $params = [])
     {
-        $this->_created = self::getSqlNow();
-        $this->_updated = self::getSqlNow();
+        $this->_created = getSqlNow();
+        $this->_modified = getSqlNow();
         foreach ($params as $key => $value) {
             $this->$key = $value;
         }
@@ -44,11 +45,6 @@
         }
         unset($value); // Necessary to prevent unexpected results
         return $scanList;
-    }
-
-    private static function getSqlNow(): string
-    {
-        return date("Y-m-d H:i:s");
     }
  }
 ?>
