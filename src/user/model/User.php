@@ -17,6 +17,7 @@ class User extends BaseModel
     
     function __construct(array $params = [])
     {
+        $this->user_id = uniqid("st-");
         parent::__construct($params);
     }
 }
