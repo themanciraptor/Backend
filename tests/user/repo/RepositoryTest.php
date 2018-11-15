@@ -53,7 +53,7 @@ class UserRepositoryTest extends TestCase
     {
         $id = self::$repo->create('Tiny', 'Tim', 'seconds@hotmeal.com');
         $expectedUser = self::$repo->get($id);
-        sleep(1); // modified only stamps the time down to the nearest second, need to wait a second so that the modified time will be different
+        sleep(1); // modified only stamps the time down to the nearest second, need to wait so the modified time will be different
 
         $expectedUser->first_name = "Big";
         self::$repo->update($expectedUser);
