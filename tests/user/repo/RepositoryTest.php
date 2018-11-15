@@ -35,7 +35,7 @@ class UserRepositoryTest extends TestCase
         $firstName = "Quail";
         $lastName = "Eats";
         $email = "QuailEats@humans.com";
-        $result_id = self::$repo->create($firstName, $lastName, $email, $userID);
+        $resultID = self::$repo->create($firstName, $lastName, $email, $userID);
 
         $result = self::$repo->get($userID);
         $this->assertEquals($firstName, $result->first_name);
@@ -43,7 +43,7 @@ class UserRepositoryTest extends TestCase
         $this->assertEquals($email, $result->email);
         $this->assertNotNull($result->getCreated());
         $this->assertNotNull($result->getModified());
-        $this->assertEquals($userID, $result_id);
+        $this->assertEquals($userID, $resultID);
 
         self::delete($userID);
     }
