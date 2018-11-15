@@ -1,3 +1,6 @@
+# 0.3.0
+- Add User Model and Repo
+
 # 0.2.0
 - Add sql user for project, update sql library to use it, add sql tests
 

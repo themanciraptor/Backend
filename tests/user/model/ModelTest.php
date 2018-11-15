@@ -3,7 +3,6 @@ require_once 'src/user/model/User.php';
 require_once 'tests/user/common.php';
 
 use PHPUnit\Framework\TestCase;
-use phpDocumentor\Reflection\Types\Null_;
 
 class UserModelTest extends TestCase
 {
