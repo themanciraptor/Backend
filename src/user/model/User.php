@@ -11,13 +11,13 @@ class User extends BaseModel
 {
     // Note that these fields must match the order of the columns in sql
     public $user_id = "";
-    public $first_name = "";
-    public $last_name = "";
+    private $password = "";
     public $email = "";
+    public $is_admin = "";
     
     function __construct(array $params = [])
     {
-        $this->user_id = uniqid("st-");
+        $this->user_id = uniqid("id-");
         parent::__construct($params);
     }
 }

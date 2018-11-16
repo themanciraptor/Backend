@@ -33,7 +33,7 @@ class UserRepository
     }
 
     // create a user
-    public function create(string $firstName, string $lastName, string $email, string $userID = null): string
+    public function create(string $email, string $password, string $userID = null): string
     {
         $usr = new User;
 
@@ -41,13 +41,12 @@ class UserRepository
         if ($userID) {
             $usr->user_id = $userID;
         }
-        $usr->first_name = $firstName;
-        $usr->last_name = $lastName;
         $usr->email = $email;
+        $usr->password = $password;
 
         $createUserQuery = sprintf("INSERT INTO User VALUES (%s)", Sql::getStatementParams(7));
 
-        if(self::$db->mutatorQuery($createUserQuery, "sssssss", ...$usr->toRefList())) {
+        if(self::$db->mutatorQuery($createUserQuery, "sssisss", ...$usr->toRefList())) {
             return $usr->user_id;
         }
 
@@ -60,6 +59,11 @@ class UserRepository
         $updateUserQuery = "UPDATE User SET first_name = ?, last_name = ?, email = ?, modified = ? WHERE user_id = ?";
 
         return self::$db->mutatorQuery($updateUserQuery, "sssss", $user->first_name, $user->last_name, $user->email, getSqlNow(), $user->user_id);
+    }
+
+    public function verify(string $email, string $password): bool
+    {
+        return true;
     }
 }
 
