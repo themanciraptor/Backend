@@ -8,6 +8,7 @@ git add SASMA_test.sql
 " > ./.git/hooks/pre-commit
 
 echo "#!/bin/bash
+
 mysql SASMA < [path to Backend repo]/SASMA.sql
 mysql SASMA_test < [path to Backend repo]/SASMA_test.sql
 mysql SASMA_test < [path to Backend repo]/SASMA.sql" > ./.git/hooks/post-merge
