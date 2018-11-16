@@ -13,12 +13,25 @@ class User extends BaseModel
     public $user_id = "";
     private $password = "";
     public $email = "";
-    public $is_admin = "";
+    public $is_admin = false;
     
     function __construct(array $params = [])
     {
-        $this->user_id = uniqid("id-");
+        $this->user_id = uniqid();
         parent::__construct($params);
+    }
+
+    function toRefList(): array
+    {
+        $reflist = parent::toRefList();
+        array_splice( $reflist, 1, 0, array('password' => &$this->password) );
+
+        return $reflist;
+    }
+
+    function verifyPassword($password): bool
+    {
+        return password_verify($password, $this->password);
     }
 }
 ?>

@@ -32,15 +32,14 @@ class UserRepositoryTest extends TestCase
     function test_create_CreatesAUser()
     {
         $userID = "st-000002";
-        $firstName = "Quail";
-        $lastName = "Eats";
         $email = "QuailEats@humans.com";
+        $isAdmin = false;
         $resultID = self::$repo->create($firstName, $lastName, $email, $userID);
 
         $result = self::$repo->get($userID);
-        $this->assertEquals($firstName, $result->first_name);
-        $this->assertEquals($lastName, $result->last_name);
+        $this->assertEquals($password, $result->password);
         $this->assertEquals($email, $result->email);
+        $this->assertEquals($isAdmin, $result->is_admin);
         $this->assertNotNull($result->getCreated());
         $this->assertNotNull($result->getModified());
         $this->assertEquals($userID, $resultID);

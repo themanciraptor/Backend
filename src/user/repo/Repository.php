@@ -42,7 +42,7 @@ class UserRepository
             $usr->user_id = $userID;
         }
         $usr->email = $email;
-        $usr->password = $password;
+        $usr->password = password_hash($password);
 
         $createUserQuery = sprintf("INSERT INTO User VALUES (%s)", Sql::getStatementParams(7));
 
@@ -61,9 +61,20 @@ class UserRepository
         return self::$db->mutatorQuery($updateUserQuery, "sssss", $user->first_name, $user->last_name, $user->email, getSqlNow(), $user->user_id);
     }
 
-    public function verify(string $email, string $password): bool
+    public function verify(string $email, string $password): string
     {
-        return true;
+        $getByEmail = "SELECT * FROM User WHERE email = ?";
+        $ite = self::$db->accessorQuery($getUserQuery, "s", $email);
+
+        $user = new User;
+        $ite->scan(...$user->toRefList());
+        $ite->next();
+
+        if ($user->verifyPassword($password)) {
+            return $user->user_id;
+        }
+
+        return "";
     }
 }
 
