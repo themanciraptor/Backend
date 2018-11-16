@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `college`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `college` (
-  `id` varchar(20) NOT NULL,
+  `college_id` varchar(20) NOT NULL,
   `name` varchar(200) NOT NULL,
   `address` varchar(200) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`college_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `student` (
-  `id` varchar(20) NOT NULL,
+  `istudent_d` varchar(20) NOT NULL,
   `user_id` varchar(30) NOT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `student` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`istudent_d`),
   KEY `user_id_idx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -84,7 +84,7 @@ DROP TABLE IF EXISTS `student_term_data`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `student_term_data` (
-  `id` varchar(45) NOT NULL,
+  `student_term_data_id` varchar(45) NOT NULL,
   `college_id` varchar(45) NOT NULL,
   `student_id` varchar(45) NOT NULL,
   `enrollment_status` varchar(45) NOT NULL,
@@ -92,10 +92,10 @@ CREATE TABLE `student_term_data` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`student_term_data_id`),
   KEY `college_id2_idx` (`college_id`),
   KEY `id_idx` (`student_id`),
-  CONSTRAINT `id` FOREIGN KEY (`college_id`) REFERENCES `college` (`id`)
+  CONSTRAINT `id` FOREIGN KEY (`college_id`) REFERENCES `college` (`college_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -117,12 +117,14 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
-  `id` varchar(30) NOT NULL,
+  `user_id` varchar(30) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
+  `is_admin` tinyint(4) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -132,7 +134,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('st-000001','redsocs@rus.com','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `user` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -145,4 +147,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16 13:36:05
+-- Dump completed on 2018-11-16 13:44:29
