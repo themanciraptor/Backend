@@ -51,17 +51,17 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `student` (
-  `istudent_d` varchar(20) NOT NULL,
+  `student_id` varchar(20) NOT NULL,
   `user_id` varchar(30) NOT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `email` varchar(200) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `phone_number` varchar(20) NOT NULL,
+  `phone` varchar(20) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`istudent_d`),
+  PRIMARY KEY (`student_id`),
   KEY `user_id_idx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
