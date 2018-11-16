@@ -56,9 +56,9 @@ class UserRepository
     // update a user
     public function update(User $user): bool
     {
-        $updateUserQuery = "UPDATE User SET first_name = ?, last_name = ?, email = ?, modified = ? WHERE user_id = ?";
+        $updateUserQuery = "UPDATE User SET password = ?, is_admin = ?, email = ?, modified = ? WHERE user_id = ?";
 
-        return self::$db->mutatorQuery($updateUserQuery, "sssss", $user->first_name, $user->last_name, $user->email, getSqlNow(), $user->user_id);
+        return self::$db->mutatorQuery($updateUserQuery, "sisss", password_hash($user->password), $user->is_admin, $user->email, getSqlNow(), $user->user_id);
     }
 
     public function verify(string $email, string $password): string

@@ -18,7 +18,6 @@ class UserModelTest extends TestCase
         
         // If we change the reference, the array should change, but the value on the object should not
         $refs[3] = &$testvar;
-        echo var_dump($refs);
         self::assertNotEquals($testvar, $usr->is_admin);
     }
 }
