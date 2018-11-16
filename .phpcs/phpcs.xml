@@ -5,7 +5,7 @@
     <file>autoload.php</file>
     <file>bin</file>
     <file>scripts</file>
-    <file>internal/sql/base_sql.php</file>
+    <file>src</file>
     <file>tests</file>
 
     <exclude-pattern>*/Standards/*/Tests/*\.(inc|css|js)</exclude-pattern>
