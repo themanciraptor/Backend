@@ -146,7 +146,7 @@ DROP TABLE IF EXISTS `User`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `User` (
   `user_id` varchar(30) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
   `is_admin` tinyint(4) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -162,6 +162,15 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES ('5bef72f43156f','$2y$10$A5pjWkM0Ervtrpn4uScDZ.mMENOym60In/jKVp1dYN1j1ySMJy1uO','seconds@hotmeal.com',0,'2018-11-17 07:46:28','2018-11-17 07:46:28',NULL);
+INSERT INTO `User` VALUES ('5bef735848aeb','$2y$10$EV72ghljHPCJSikpj9fGyuy/5/GmaSlzv7pYShgV71sMxOcq66506','seconds@hotmeal.com',0,'2018-11-17 07:48:08','2018-11-17 07:48:08',NULL);
+INSERT INTO `User` VALUES ('5bef73db50b1e','$2y$10$dt9t/JZmQ4c5I7fuYYfXqeERU.g8oJ8UckatQpQGB7L0/gf4NtVy6','seconds@hotmeal.com',0,'2018-11-17 07:50:19','2018-11-17 07:50:19',NULL);
+INSERT INTO `User` VALUES ('5bef73f54206c','$2y$10$xOpzrmzwgiaMjgn7i3fM.epMmGZbSIdP3d8piI5uyri0vYUEOzPtW','seconds@hotmeal.com',0,'2018-11-17 07:50:45','2018-11-17 07:50:45',NULL);
+INSERT INTO `User` VALUES ('5bef74265ca9c','$2y$10$kvj997XbodNEhx.ECiehneQv0N3axmL3am.ymVLRm8fsQuNzkU5JO','seconds@hotmeal.com',0,'2018-11-17 07:51:34','2018-11-17 07:51:34',NULL);
+INSERT INTO `User` VALUES ('5bef7472e046a','$2y$10$8llg6mFzRyo8h9Pd0rC72uqVR8hPSsEfdHv6Ff9fbAB5q5X/BHiOW','seconds@hotmeal.com',0,'2018-11-17 07:52:50','2018-11-17 07:52:50',NULL);
+INSERT INTO `User` VALUES ('5bef74c815b01','$2y$10$wzy6bryJq469vHZkr6y.au6uZ1NKhdIlCc8GYPBdBeqaxNLfZfr6e','seconds@hotmeal.com',0,'2018-11-17 07:54:16','2018-11-17 07:54:16',NULL);
+INSERT INTO `User` VALUES ('5bef74e81436d','$2y$10$qRk33lKBT.APC6JsIVe5luyI14urQCHB0uMVkYKKynnuCZ5w4ippW','seconds@hotmeal.com',0,'2018-11-17 07:54:48','2018-11-17 07:54:48',NULL);
+INSERT INTO `User` VALUES ('5bef7501b9491','$2y$10$xONSRTwnTmx2K6L5H7OlF.wHAIaq/vYWYZ9Q5ynZY1uL4oWp6hEum','seconds@hotmeal.com',0,'2018-11-17 07:55:13','2018-11-17 07:55:13',NULL);
 INSERT INTO `User` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -175,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16 18:00:08
+-- Dump completed on 2018-11-16 19:58:04

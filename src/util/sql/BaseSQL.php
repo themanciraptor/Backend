@@ -1,4 +1,6 @@
 <?php
+
+use TheSeer\Tokenizer\Exception;
 /**
  * Package SQL is a simple class that abstracts away database connection logic. The intent
  * is that it allows the creation of good code a lot faster.
@@ -74,6 +76,9 @@ class Sql implements SqlInterface
             $stmt->bind_param($typeList, ...$params);
         }
         $res = $stmt->execute();
+        if(sizeof($stmt->error_list) > 0) {
+            throw new SqlDataInputException(sprintf("Data mutation failed: %s", json_encode($stmt->error_list)));
+        }
         $stmt->close();
 
         return $res;
@@ -154,6 +159,14 @@ class RowIterator implements RowIteratorInterface
 class SqlPreparedStatementException extends Exception
 {
     /* For exceptions cause by failure of the sql to create a prepared statement query */
+    function __construct(string $message, int $code = 500, Exception $previous = null) {
+        parent::__construct($message, $code, $previous);
+    }
+}
+
+class SqlDataInputException extends Exception
+{
+    /* For exceptions caused when data in queries is invalid */
     function __construct(string $message, int $code = 500, Exception $previous = null) {
         parent::__construct($message, $code, $previous);
     }

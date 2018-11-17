@@ -118,7 +118,7 @@ DROP TABLE IF EXISTS `User`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `User` (
   `user_id` varchar(30) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
   `is_admin` tinyint(4) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -147,4 +147,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16 18:00:08
+-- Dump completed on 2018-11-16 19:58:04

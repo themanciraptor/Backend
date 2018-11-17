@@ -33,11 +33,13 @@ class UserRepositoryTest extends TestCase
     {
         $userID = "st-000002";
         $email = "QuailEats@humans.com";
+        $password = "mahpassword";
         $isAdmin = false;
-        $resultID = self::$repo->create($firstName, $lastName, $email, $userID);
+        $resultID = self::$repo->create($email, $password, $userID);
 
         $result = self::$repo->get($userID);
-        $this->assertEquals($password, $result->password);
+
+        $this->assertTrue($result->verifyPassword($password));
         $this->assertEquals($email, $result->email);
         $this->assertEquals($isAdmin, $result->is_admin);
         $this->assertNotNull($result->getCreated());
@@ -49,15 +51,15 @@ class UserRepositoryTest extends TestCase
 
     function test_update_UpdatesAUser()
     {
-        $id = self::$repo->create('Tiny', 'Tim', 'seconds@hotmeal.com');
+        $id = self::$repo->create('seconds@hotmeal.com', 'mahpassword');
         $expectedUser = self::$repo->get($id);
         sleep(1); // modified only stamps the time down to the nearest second, need to wait so the modified time will be different
 
-        $expectedUser->first_name = "Big";
-        self::$repo->update($expectedUser);
+        $expectedUser->email = "firsts@hotmeal.com";
+        self::$repo->update($id, ['email' => $expectedUser->email]);
         $actual = self::$repo->get($id);
 
-        $this->assertEquals($expectedUser->first_name, $actual->first_name);
+        $this->assertEquals($expectedUser->email, $actual->email);
         $this->assertGreaterThan($expectedUser->getModified(), $actual->getModified());
 
         self::delete($id);

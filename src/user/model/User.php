@@ -17,12 +17,14 @@ class User extends BaseModel
     
     function __construct(array $params = [])
     {
-        $this->user_id = $params["user_id"] ?: "";
-        $this->password = $params["password"] ?: "";
-        $this->email = $params["email"] ?: "";
-        $this->is_admin = $params["is_admin"] ?: false;
-        $this->user_id = uniqid();
-        parent::__construct(array_slice($params, -3));
+        // $this->user_id = $params["user_id"] ?: "";
+        $this->password = array_key_exists("password", $params) ? $params['password']: "";
+        unset($params['password']);
+        // $this->email = $params["email"] ?: "";
+        // $this->is_admin = $params["is_admin"] ?: false;
+        // $this->user_id = uniqid();
+        // parent::__construct(array_slice($params, -3));
+        parent::__construct($params);
     }
 
     public function toRefList(): array
