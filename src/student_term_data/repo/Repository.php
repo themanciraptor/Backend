@@ -18,7 +18,7 @@ class StudentTermDataRepository
         self::$db = $db;
     }
 
-    // list all the educational institutions in our db
+    // list all the student term data in our db
     public function list($student_id): array
     {
         $getStudentQuery = "SELECT * FROM StudentTermData WHERE student_id = ?";

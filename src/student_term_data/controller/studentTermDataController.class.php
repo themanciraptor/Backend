@@ -21,7 +21,7 @@ class StudentTermDataController extends Controller {
     public function process() {
         switch ($this->getMethod()) {
             case 'GET':
-                $_data = $this->_repo->list();
+                $_data = $this->_repo->list($this->getPath()[1]);
                 if (!$_data) {
                     echo $this->response(500);
                 }
