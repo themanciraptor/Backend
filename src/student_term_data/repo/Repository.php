@@ -24,12 +24,11 @@ class StudentTermDataRepository
         $getStudentQuery = "SELECT * FROM StudentTermData WHERE student_id = ?";
         $ite = self::$db->accessorQuery($getStudentQuery, 's', $student_id);
 
-        $std = new StudentTermData();
-        $stdrefs = $std->toRefList();
-        $studentTermData = [];
-        $ite->scan(...$stdrefs);
-        while($ite->next()) {
-            array_push($studentTermData, new StudentTermData(get_object_vars($std)));
+        $studentTermData = [];        
+        for ($std = new StudentTermData(), $ite->scan(... $std->toRefList());
+            $ite->next();
+            $std = new StudentTermData(), $ite->scan(... $std->toRefList())) {
+                array_push($studentTermData, $std);
         }
 
         return $studentTermData;

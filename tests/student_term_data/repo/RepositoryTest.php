@@ -25,7 +25,6 @@ class StudentTermDataRepositoryTest extends TestCase
     {
         $data = self::$repo->list("200361084");
         
-        var_dump($data);
         $this->assertEquals(2, count($data));
         $this->assertEquals(8, count($data[0]->toRefList()));
 

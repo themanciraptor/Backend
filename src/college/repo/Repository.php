@@ -31,7 +31,7 @@ class CollegeRepository
         for($college = new College(), $ite->scan(...$college->toRefList());
             $ite->next();
             $college = new College(), $ite->scan(...$college->toRefList())) {
-            array_push($colleges, $college);
+                array_push($colleges, $college);
         } 
 
         return $colleges;
