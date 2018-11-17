@@ -61,6 +61,7 @@ class UserRepository
         return self::$db->mutatorQuery($updateUserQuery, "sisss", password_hash($user->password), $user->is_admin, $user->email, getSqlNow(), $user->user_id);
     }
 
+    // verify a users credentials and get the appropriate id
     public function verify(string $email, string $password): string
     {
         $getByEmail = "SELECT * FROM User WHERE email = ?";
