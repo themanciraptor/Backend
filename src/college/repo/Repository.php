@@ -23,19 +23,24 @@ class CollegeRepository
     // list all the educational institutions in our db
     public function list(): array
     {
-        $getStudentQuery = "SELECT * FROM College";
-        $ite = self::$db->accessorQuery($getStudentQuery, '');
+        $ite = self::$db->accessorQuery("SELECT * FROM College", '');
 
         $colleges = [];
-        
-        for($college = new College(), $ite->scan(...$college->toRefList());
-            $ite->next();
-            $college = new College(), $ite->scan(...$college->toRefList())) {
-                array_push($colleges, $college);
-        } 
+        do {
+            array_push($colleges, self::nextIteration($ite));
+        } while ($ite->next());
 
         return $colleges;
     }
+
+    // Helper method that prepares the next iteration for listing colleges
+    private static function nextIteration(RowIteratorInterface &$ite): College
+    {
+        $college = new College();
+        $ite->scan(...$college->toRefList());
+
+        return $college;
+    } 
 }
 
 ?>
