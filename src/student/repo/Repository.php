@@ -43,7 +43,7 @@ class StudentRepository
             [
                 "student_id" => "",
                 "user_id" => "",
-                "fisrt_name" => "",
+                "first_name" => "",
                 "last_name" => "",
                 "email" => "someemail@email.com",
                 "address" => "",

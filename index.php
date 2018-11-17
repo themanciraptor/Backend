@@ -42,7 +42,7 @@ try {
             $college = new CollegeController($_SERVER['REQUEST_URI']);
             $college->process();
         case 'term':
-            $term = new TermController($_SERVER['REQUEST_URI']);
+            $term = new StudentTermDataController($_SERVER['REQUEST_URI']);
             $term->process();
         default:
             $auth->response(404, Array('error' => 'Not Found'));

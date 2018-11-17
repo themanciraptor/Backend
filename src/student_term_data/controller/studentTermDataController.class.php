@@ -3,7 +3,7 @@ require_once 'src/util/controller/controller.class.php';
 require_once 'src/term/repo/Repository.php';
 require_once 'src/util/sql/BaseSQL.php';
 
-class TermController extends Controller {
+class StudentTermDataController extends Controller {
     private $_repo;
     /*
         Constructor : takes request and builds Controller parent object
@@ -21,26 +21,11 @@ class TermController extends Controller {
     public function process() {
         switch ($this->getMethod()) {
             case 'GET':
-                $_data = $this->_repo->get();
+                $_data = $this->_repo->list();
                 if (!$_data) {
                     echo $this->response(500);
                 }
                 echo $this->response(200, $_data);
-                break;
-            case 'POST': 
-                $_success = $this->_repo->create();
-                if (!$_success) {
-                    echo $this->response(500);
-                }
-                echo $this->response(201);
-                break;
-            case 'PUT':
-                $_user = new Term();
-                $_success = $this->_repo->update($_user);
-                if (!$_success) {
-                    echo $this->response(500);
-                }
-                echo $this->response(201);
                 break;
             default:
                 throw new Exception('Method Not Allowed');

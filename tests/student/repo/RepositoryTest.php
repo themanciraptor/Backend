@@ -1,7 +1,6 @@
 <?php
 require_once 'src/util/sql/BaseSQL.php';
 require_once 'src/student/repo/Repository.php';
-// require_once 'src/user/model/User.php';
 require_once 'tests/student/common.php';
 use PHPUnit\Framework\TestCase;
 
