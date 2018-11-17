@@ -39,7 +39,10 @@ CREATE TABLE `College` (
 
 LOCK TABLES `College` WRITE;
 /*!40000 ALTER TABLE `College` DISABLE KEYS */;
-INSERT INTO `College` VALUES ('UofR','University of Regina','3737 Wascana Parkway','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `College` VALUES ('MacU','MacEwan University','10700 - 104 104 Avenue, Edmonton, AB','2018-11-17 22:34:16','2018-11-17 22:34:16',NULL);
+INSERT INTO `College` VALUES ('McGillU','McGill University','845 Sherbrooke Street West, Montreal, Quebec','2018-11-17 22:35:43','2018-11-17 22:35:43',NULL);
+INSERT INTO `College` VALUES ('UofR','University of Regina','3737 Wascana Parkway, Regina, SK','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `College` VALUES ('UofS','University of Saskatchewan','105 Administration Place, Saskatoon, SK','2018-11-17 22:31:43','2018-11-17 22:31:43',NULL);
 /*!40000 ALTER TABLE `College` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,6 +74,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
+INSERT INTO `Student` VALUES ('200303299','st-000001','Carl','Marks','redsocs@rus.com','Brückengasse 664','2018-11-17 17:29:26','2018-11-17 17:29:26',NULL);
 INSERT INTO `Student` VALUES ('200361084','','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -104,6 +108,8 @@ CREATE TABLE `StudentTermData` (
 
 LOCK TABLES `StudentTermData` WRITE;
 /*!40000 ALTER TABLE `StudentTermData` DISABLE KEYS */;
+INSERT INTO `StudentTermData` VALUES ('randomid','UofS','200361084','Pending','Winter/2018','2018-11-17 17:24:32','2018-11-17 17:24:32',NULL);
+INSERT INTO `StudentTermData` VALUES ('randomid2','MacU','200303299','Enrolled','Fall/2018','2018-11-17 17:30:33','2018-11-17 17:30:33',NULL);
 INSERT INTO `StudentTermData` VALUES ('student_id_200361084','UofR','','Enrolled','Fall/2018','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `StudentTermData` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -123,7 +129,9 @@ CREATE TABLE `User` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -146,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-17 11:04:59
+-- Dump completed on 2018-11-17 11:31:26
