@@ -3,6 +3,8 @@
  * College Repository is for basic data update or access to College table.
  * 
  * @author: Ezra Carter
+ * 
+ * Known BUGS: The list function does not return the correct times
  */
 require_once "src/util/sql/BaseSQL.php";
 require_once "src/util/sql/Util.php";
@@ -25,12 +27,14 @@ class CollegeRepository
         $ite = self::$db->accessorQuery($getStudentQuery, '');
 
         $college = new College();
-        $college = $college->toRefList();
+        $collegerefs = $college->toRefList();
         $colleges = [];
-        $ite->scan(...$college);
+        $ite->scan(...$collegerefs);
         while($ite->next()) {
-            array_push($colleges, new College($college));
+            array_push($colleges, new College(get_object_vars($college)));
         }
+
+        var_dump($colleges);
 
         return $colleges;
     }

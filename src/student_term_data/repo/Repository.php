@@ -25,15 +25,42 @@ class StudentTermDataRepository
         $ite = self::$db->accessorQuery($getStudentQuery, 's', $student_id);
 
         $std = new StudentTermData();
-        $std = $std->toRefList();
+        $stdrefs = $std->toRefList();
         $studentTermData = [];
-        $ite->scan(...$std);
+        $ite->scan(...$stdrefs);
         while($ite->next()) {
-            array_push($studentTermData, new StudentTermData($std));
+            array_push($studentTermData, new StudentTermData(get_object_vars($std)));
         }
 
         return $studentTermData;
     }
+
+        // create a StudentTermData
+        public function create(array $studentTermData): string
+        {
+            /*
+                $studentData must be a subset of the following array:
+    
+                [
+                    "student_term_data_id" => "",
+                    "college_id" => "", // Note: this must match an existing row in the College table
+                    "student_id" => "", // Note: this must match an existing row in the Student table
+                    "enrollment_status" => "",
+                    "term" => "",
+                ]
+    
+                returns: string of the student_term_data_id on success, else an empty string
+            */
+            $std = new StudentTermData($studentTermData);
+        
+            $createStudentQuery = sprintf("INSERT INTO StudentTermData VALUES (%s)", Sql::getStatementParams(8));
+    
+            if(self::$db->mutatorQuery($createStudentQuery, "ssssssss", ...$std->toRefList())) {
+                return $std->student_id;
+            }
+    
+            return "";
+        }
 }
 
 ?>

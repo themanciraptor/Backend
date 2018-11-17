@@ -28,8 +28,8 @@ require_once "src/util/sql/Util.php";
 
     function __construct(array $params = [])
     {
-        $this->_created = getSqlNow();
         $this->_modified = getSqlNow();
+        $this->_created = getSqlNow();
         foreach ($params as $key => $value) {
             $this->$key = $value;
         }
