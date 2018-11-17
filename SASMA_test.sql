@@ -57,7 +57,6 @@ CREATE TABLE `Student` (
   `last_name` varchar(45) NOT NULL,
   `email` varchar(200) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `phone` varchar(20) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
@@ -72,7 +71,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES ('200361084','','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','3062318046','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `Student` VALUES ('200361084','testid','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,16 +161,8 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES ('5bef72f43156f','$2y$10$A5pjWkM0Ervtrpn4uScDZ.mMENOym60In/jKVp1dYN1j1ySMJy1uO','seconds@hotmeal.com',0,'2018-11-17 07:46:28','2018-11-17 07:46:28',NULL);
-INSERT INTO `User` VALUES ('5bef735848aeb','$2y$10$EV72ghljHPCJSikpj9fGyuy/5/GmaSlzv7pYShgV71sMxOcq66506','seconds@hotmeal.com',0,'2018-11-17 07:48:08','2018-11-17 07:48:08',NULL);
-INSERT INTO `User` VALUES ('5bef73db50b1e','$2y$10$dt9t/JZmQ4c5I7fuYYfXqeERU.g8oJ8UckatQpQGB7L0/gf4NtVy6','seconds@hotmeal.com',0,'2018-11-17 07:50:19','2018-11-17 07:50:19',NULL);
-INSERT INTO `User` VALUES ('5bef73f54206c','$2y$10$xOpzrmzwgiaMjgn7i3fM.epMmGZbSIdP3d8piI5uyri0vYUEOzPtW','seconds@hotmeal.com',0,'2018-11-17 07:50:45','2018-11-17 07:50:45',NULL);
-INSERT INTO `User` VALUES ('5bef74265ca9c','$2y$10$kvj997XbodNEhx.ECiehneQv0N3axmL3am.ymVLRm8fsQuNzkU5JO','seconds@hotmeal.com',0,'2018-11-17 07:51:34','2018-11-17 07:51:34',NULL);
-INSERT INTO `User` VALUES ('5bef7472e046a','$2y$10$8llg6mFzRyo8h9Pd0rC72uqVR8hPSsEfdHv6Ff9fbAB5q5X/BHiOW','seconds@hotmeal.com',0,'2018-11-17 07:52:50','2018-11-17 07:52:50',NULL);
-INSERT INTO `User` VALUES ('5bef74c815b01','$2y$10$wzy6bryJq469vHZkr6y.au6uZ1NKhdIlCc8GYPBdBeqaxNLfZfr6e','seconds@hotmeal.com',0,'2018-11-17 07:54:16','2018-11-17 07:54:16',NULL);
-INSERT INTO `User` VALUES ('5bef74e81436d','$2y$10$qRk33lKBT.APC6JsIVe5luyI14urQCHB0uMVkYKKynnuCZ5w4ippW','seconds@hotmeal.com',0,'2018-11-17 07:54:48','2018-11-17 07:54:48',NULL);
-INSERT INTO `User` VALUES ('5bef7501b9491','$2y$10$xONSRTwnTmx2K6L5H7OlF.wHAIaq/vYWYZ9Q5ynZY1uL4oWp6hEum','seconds@hotmeal.com',0,'2018-11-17 07:55:13','2018-11-17 07:55:13',NULL);
 INSERT INTO `User` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `User` VALUES ('testid','$2y$10$35z4eRm2Mamv.NGKRF7Eq.ETp1GsF78DbIiZiXDh6S0j4v.Yi1G9a','jjwrubleski21@gmail.com',0,'2018-11-17 09:18:27','2018-11-17 09:18:27',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -184,4 +175,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16 19:58:04
+-- Dump completed on 2018-11-16 22:01:43

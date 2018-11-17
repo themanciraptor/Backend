@@ -6,7 +6,6 @@
  */
 require_once "src/util/sql/BaseSQL.php";
 require_once "src/util/sql/Util.php";
-require_once "src/user/repo/Repository.php";
 require_once "src/util/sql/Interface.php";
 require_once "src/user/model/User.php";
 

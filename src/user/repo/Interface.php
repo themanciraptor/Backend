@@ -1,8 +1,6 @@
 <?php
 /**
- * This is the interface for the sql library. The purpose of this interface is to enable dependency inversion for the whole app.
- * 
- * A repo module should thus require something implementing the SqlInterface, not a specific class
+ * This is the interface for the User Repository. The purpose of this interface is to enable dependency inversion for the whole app.
  * 
  * @author: Ezra Carter
  */
