@@ -6,7 +6,7 @@
  */
 
 interface StudentInterface {
-    public function update(User $user): bool;
+    // public function update(User $user): bool;
     public function create(string $email, string $password, string $userID = null): string;
     public function get(string $id): User;
 }
