@@ -1,6 +1,6 @@
 <?php
 require_once 'src/util/controller/controller.class.php';
-require_once 'src/term/repo/Repository.php';
+require_once 'src/student_term_data/repo/Repository.php';
 require_once 'src/util/sql/BaseSQL.php';
 
 class StudentTermDataController extends Controller {
@@ -12,7 +12,7 @@ class StudentTermDataController extends Controller {
     public function __construct($request) {
         parent::__construct($request);
         $_db = new Sql();
-        $this->_repo = new TermRepository($_db);
+        $this->_repo = new StudentTermDataRepository($_db);
     }
 
     /*

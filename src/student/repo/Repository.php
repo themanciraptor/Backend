@@ -7,7 +7,6 @@
 require_once "src/util/sql/BaseSQL.php";
 require_once "src/util/sql/Util.php";
 require_once "src/util/sql/Interface.php";
-require_once "src/util/repo/BaseRepository.php";
 require_once "src/student/model/Student.php";
 
 class StudentRepository

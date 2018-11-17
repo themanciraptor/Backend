@@ -5,6 +5,8 @@
 require_once 'src/auth/controller/authController.class.php';
 require_once 'src/student/controller/studentController.class.php';
 require_once 'src/user/controller/userController.class.php';
+require_once 'src/college/controller/collegeController.class.php';
+require_once 'src/student_term_data/controller/studentTermDataController.class.php';
 
 function session_control_start() {
     session_start();
@@ -41,7 +43,7 @@ try {
         case 'college':
             $college = new CollegeController($_SERVER['REQUEST_URI']);
             $college->process();
-        case 'term':
+        case 'studentterm':
             $term = new StudentTermDataController($_SERVER['REQUEST_URI']);
             $term->process();
         default:
