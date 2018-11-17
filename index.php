@@ -2,9 +2,9 @@
 /*
     ENTRY POINT
 */
-require_once 'controllers/authController.class.php';
-require_once 'controllers/studentController.class.php';
-require_once 'controllers/userController.class.php';
+require_once 'src/auth/controller/authController.class.php';
+require_once 'src/student/controller/studentController.class.php';
+require_once 'src/user/controller/userController.class.php';
 
 function session_control_start() {
     session_start();
@@ -38,6 +38,12 @@ try {
             $user = new UserController($_SERVER['REQUEST_URI']);
             $user->process();
             break;
+        case 'college':
+            $college = new CollegeController($_SERVER['REQUEST_URI']);
+            $college->process();
+        case 'term':
+            $term = new TermController($_SERVER['REQUEST_URI']);
+            $term->process();
         default:
             $auth->response(404, Array('error' => 'Not Found'));
             break;

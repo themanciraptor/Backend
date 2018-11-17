@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "#!/bin/bash
-mysqldump --skip-extended-insert SASMA > [path to backend repo]/SASMA.sql
-mysqldump --skip-extended-insert SASMA_test > [path to backend repo]/SASMA_test.sql
-cd [path to backend repo]
+mysqldump --skip-extended-insert SASMA > /home/riley/G3/Backend/SASMA.sql
+mysqldump --skip-extended-insert SASMA_test > /home/riley/G3/Backend/SASMA_test.sql
+cd /home/riley/G3/Backend
 git add SASMA.sql
 git add SASMA_test.sql
 " > ./.git/hooks/pre-commit
