@@ -39,7 +39,10 @@ CREATE TABLE `College` (
 
 LOCK TABLES `College` WRITE;
 /*!40000 ALTER TABLE `College` DISABLE KEYS */;
-INSERT INTO `College` VALUES ('UofR','University of Regina','3737 Wascana Parkway','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `College` VALUES ('MacU','MacEwan University','10700 - 104 104 Avenue, Edmonton, AB','2018-11-17 16:34:16','2018-11-17 16:34:16',NULL);
+INSERT INTO `College` VALUES ('McGillU','McGill University','845 Sherbrooke Street West, Montreal, Quebec','2018-11-17 16:35:43','2018-11-17 16:35:43',NULL);
+INSERT INTO `College` VALUES ('UofR','University of Regina','3737 Wascana Parkway, Regina, SK','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `College` VALUES ('UofS','University of Saskatchewan','105 Administration Place, Saskatoon, SK','2018-11-17 16:31:43','2018-11-17 16:31:43',NULL);
 /*!40000 ALTER TABLE `College` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16 22:01:43
+-- Dump completed on 2018-11-17 11:04:59
