@@ -21,26 +21,11 @@ class CollegeController extends Controller {
     public function process() {
         switch ($this->getMethod()) {
             case 'GET':
-                $_data = $this->_repo->get();
+                $_data = $this->_repo->list();
                 if (!$_data) {
                     echo $this->response(500);
                 }
                 echo $this->response(200, $_data);
-                break;
-            case 'POST': 
-                $_success = $this->$_repo->create();
-                if (!$_success) {
-                    echo $this->response(500);
-                }
-                echo $this->response(201);
-                break;
-            case 'PUT':
-                $_college = new College();
-                $_success = $this->$_repo->update($_college);
-                if (!$_success) {
-                    echo $this->response(500);
-                }
-                echo $this->response(201);
                 break;
             default:
                 throw new Exception('Method Not Allowed');
