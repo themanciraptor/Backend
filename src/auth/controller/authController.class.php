@@ -1,5 +1,7 @@
 <?php
 require_once 'src/util/controller/controller.class.php';
+require_once 'src/util/sql/BaseSQL.php';
+require_once 'src/user/repo/Repository.php';
 
 class AuthController extends Controller {
     private $_repo;
@@ -10,7 +12,7 @@ class AuthController extends Controller {
     public function __construct($request) {
         parent::__construct($request);
         $_db = new Sql();
-        $this->$_repo = new UserRepository($_db);
+        $this->_repo = new UserRepository($_db);
     }
 
     /*

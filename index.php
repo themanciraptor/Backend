@@ -28,9 +28,11 @@ try {
     $auth->process();
     switch ($auth->getPath()[0]) {
         case 'login': 
+            echo $auth->response(201);
             break;
         case 'logout': 
             $auth->deauthorize();
+            echo $auth->response(201);
             break;
         case 'student':
             $student = new StudentController($_SERVER['REQUEST_URI']);
