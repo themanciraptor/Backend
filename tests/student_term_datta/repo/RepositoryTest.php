@@ -1,10 +1,9 @@
 <?php
 require_once 'src/util/sql/BaseSQL.php';
-require_once 'src/college/repo/Repository.php';
-require_once 'tests/college/common.php';
+require_once 'src/student_term_data/repo/Repository.php';
 use PHPUnit\Framework\TestCase;
 
-class CollegeRepositoryTest extends TestCase
+class StudentTermDataRepositoryTest extends TestCase
 {
     protected static $dbh;
     protected static $repo;
@@ -12,7 +11,7 @@ class CollegeRepositoryTest extends TestCase
     public static function setUpBeforeClass()
     {
         self::$dbh = new Sql("SASMA_test");
-        self::$repo = new CollegeRepository(self::$dbh);
+        self::$repo = new StudentTermDataRepository(self::$dbh);
     }
 
     public static function tearDownAfterClass()
@@ -23,9 +22,13 @@ class CollegeRepositoryTest extends TestCase
 
     function test_list_ReturnsListOfUniqueSchools()
     {
-        $colleges = self::$repo->list();
+        $data = self::$repo->list("200361084");
 
-        $this->assertGreaterThan(3, count($colleges));
+        $this->assertEquals(2, count($data));
+
+        $data = self::$repo->list("200303299");
+
+        $this->assertEquals(1, count($data));
     }
 }
 

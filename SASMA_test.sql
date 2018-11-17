@@ -74,6 +74,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
+INSERT INTO `Student` VALUES ('200303299','st-000001','Carl','Marks','redsocs@rus.com','Brückengasse 664','2018-11-17 23:29:26','2018-11-17 23:29:26',NULL);
 INSERT INTO `Student` VALUES ('200361084','testid','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -107,7 +108,9 @@ CREATE TABLE `StudentTermData` (
 
 LOCK TABLES `StudentTermData` WRITE;
 /*!40000 ALTER TABLE `StudentTermData` DISABLE KEYS */;
-INSERT INTO `StudentTermData` VALUES ('student_id_200361084','UofR','','Enrolled','Fall/2018','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `StudentTermData` VALUES ('randomid','UofS','200361084','Pending','Winter/2018','2018-11-17 23:24:32','2018-11-17 23:24:32',NULL);
+INSERT INTO `StudentTermData` VALUES ('randomid2','MacU','200303299','Enrolled','Fall/2018','2018-11-17 23:30:33','2018-11-17 23:30:33',NULL);
+INSERT INTO `StudentTermData` VALUES ('student_id_200361084','UofR','200361084','Enrolled','Fall/2018','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `StudentTermData` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-17 11:31:26
+-- Dump completed on 2018-11-17 11:42:23
