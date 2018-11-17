@@ -31,6 +31,7 @@ class CollegeRepositoryTest extends TestCase
             '_deleted' => NULL,
         ]);
         $colleges = self::$repo->list();
+        var_dump($colleges);
 
         $this->assertGreaterThan(3, count($colleges));
         $this->assertEquals($expectedCollege0, $colleges[0]);

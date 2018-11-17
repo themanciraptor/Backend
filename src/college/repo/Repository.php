@@ -26,15 +26,13 @@ class CollegeRepository
         $getStudentQuery = "SELECT * FROM College";
         $ite = self::$db->accessorQuery($getStudentQuery, '');
 
-        $college = new College();
-        $collegerefs = $college->toRefList();
         $colleges = [];
-        $ite->scan(...$collegerefs);
-        while($ite->next()) {
-            array_push($colleges, new College(get_object_vars($college)));
-        }
-
-        var_dump($colleges);
+        
+        for($college = new College(), $ite->scan(...$college->toRefList());
+            $ite->next();
+            $college = new College(), $ite->scan(...$college->toRefList())) {
+            array_push($colleges, $college);
+        } 
 
         return $colleges;
     }
