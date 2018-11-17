@@ -57,7 +57,6 @@ CREATE TABLE `Student` (
   `last_name` varchar(45) NOT NULL,
   `email` varchar(200) NOT NULL,
   `address` varchar(200) NOT NULL,
-  `phone` varchar(20) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
@@ -72,7 +71,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
-INSERT INTO `Student` VALUES ('200361084','','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','3062318046','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `Student` VALUES ('200361084','','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +117,7 @@ DROP TABLE IF EXISTS `User`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `User` (
   `user_id` varchar(30) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(64) DEFAULT NULL,
   `email` varchar(30) NOT NULL,
   `is_admin` tinyint(4) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -147,4 +146,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-16 17:58:42
+-- Dump completed on 2018-11-16 22:01:43

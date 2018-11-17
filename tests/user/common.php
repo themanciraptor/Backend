@@ -7,12 +7,12 @@ function getExistingUser(): User
 {
     $values = array(
         "user_id" => "st-000001",
-        "password" => "mahpassword",
+        "password" => null,
         "email" => "redsocs@rus.com",
-        "is_admin" => false,
+        "is_admin" => null,
         "_created" => "2018-10-18 04:05:58",
         "_modified" => "2018-10-18 04:05:58",
-        "_deleted" => Null
+        "_deleted" => null
     );
 
     return new User($values);
