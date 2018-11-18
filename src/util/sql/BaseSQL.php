@@ -133,7 +133,7 @@ class RowIterator implements RowIteratorInterface
     {
         $this->_bound_variables = $this->_stmt->bind_result(...$params);
         if (!$this->_bound_variables) {
-            throw new Exception('Unable to bind receivers to result schema');
+            throw new SqlPreparedStatementException('Unable to bind receivers to result schema');
         }
     }
 

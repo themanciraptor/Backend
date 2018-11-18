@@ -4,11 +4,12 @@
  * 
  * @author: Ezra Carter
  */
+require_once "src/student/model/Student.php";
 
 interface StudentInterface {
-    // public function update(User $user): bool;
-    public function create(string $email, string $password, string $userID = null): string;
-    public function get(string $id): Student;
+    public function get(string $user_id): Student;
+    public function create(array $studentData): string;
+    public function update(Student $student): bool;
 }
 
 ?>

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Automated testing for the User repository methods
+ */
 require_once 'src/util/sql/BaseSQL.php';
 require_once 'src/user/repo/Repository.php';
 require_once 'src/user/model/User.php';
@@ -52,15 +55,19 @@ class UserRepositoryTest extends TestCase
     function test_update_UpdatesAUser()
     {
         $id = self::$repo->create('seconds@hotmeal.com', 'mahpassword');
-        $expectedUser = self::$repo->get($id);
-        sleep(1); // modified only stamps the time down to the nearest second, need to wait so the modified time will be different
+        $before = $expectedUser = self::$repo->get($id);
+        sleep(1); // modified stamps the time down to the nearest second, need to wait so the modified time will be different
 
-        $expectedUser->email = "firsts@hotmeal.com";
-        self::$repo->update($id, ['email' => $expectedUser->email]);
-        $actual = self::$repo->get($id);
+        $expectedUser = get_object_vars($expectedUser);
+        $expectedUser["_password"] = "newpassword";
+        $expectedUser = new User($expectedUser);
 
-        $this->assertEquals($expectedUser->email, $actual->email);
-        $this->assertGreaterThan($expectedUser->getModified(), $actual->getModified());
+        self::$repo->update($expectedUser);
+        $after = self::$repo->get($id);
+
+        $this->assertEquals($expectedUser->email, $after->email);
+        $this->assertGreaterThan($before->getModified(), $expectedUser->getModified());
+        $this->assertTrue($after->verifyPassword("newpassword"));
 
         self::delete($id);
     }

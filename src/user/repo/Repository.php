@@ -36,7 +36,7 @@ class UserRepository
     {
         $userParams = [
             'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
+            '_password' => password_hash($password, PASSWORD_DEFAULT),
             'user_id' => $userID ? $userID : uniqid(),
         ]; 
         
@@ -51,23 +51,17 @@ class UserRepository
     }
 
     // update a user
-    public function update(string $userID, array $updateParams): bool
-    {
-        $values = [getSqlNow()];
-        $columns = "modified = ?";
-        $typelist = "ss";
-        foreach ($updateParams as $key => $value) {
-            if($key === "password") {
-                $updateParams[$key] = password_hash($value, PASSWORD_DEFAULT);
-            }
-            $columns .= ", $key = ?";
-            $typelist .= "s";
+    public function update(User $user): bool {
+        $query = $user->updatePasswordStatement(new QueryBuilder("UPDATE User SET %s WHERE %s"))
+            ->addFilter("user_id", "s", $user->user_id)
+            ->addModified();
+
+        $vars = get_object_vars($user);
+        foreach ($vars as $key => $value) {
+            $query->addStatement($key, "s", $value);
         }
-        $updateUserQuery = sprintf("UPDATE User SET %s WHERE user_id = ?", $columns);
-        $values = array_merge($values, array_values($updateParams));
-        array_push($values, $userID);
-        
-        return self::$db->mutatorQuery($updateUserQuery, $typelist, ...$values);
+
+        return $query->doMutatorQuery(self::$db);
     }
 
     // verify a users credentials and get the appropriate id
