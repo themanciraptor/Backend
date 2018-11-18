@@ -18,48 +18,47 @@ class StudentTermDataRepository
         self::$db = $db;
     }
 
-    // list all the student term data in our db
-    public function list($student_id): array
+    // list all the educational institutions in our db
+    public function list(string $student_id): array
     {
         $getStudentQuery = "SELECT * FROM StudentTermData WHERE student_id = ?";
         $ite = self::$db->accessorQuery($getStudentQuery, 's', $student_id);
 
         $studentTermData = [];        
-        for ($std = new StudentTermData(), $ite->scan(... $std->toRefList());
-            $ite->next();
-            $std = new StudentTermData(), $ite->scan(... $std->toRefList())) {
-                array_push($studentTermData, $std);
-        }
+        do {
+            $std = new StudentTermData();
+            $ite->scan(...$std->toRefList());
+        } while ($ite->next() && array_push($studentTermData, $std));
 
         return $studentTermData;
     }
 
-        // create a StudentTermData
-        public function create(array $studentTermData): string
-        {
-            /*
-                $studentData must be a subset of the following array:
+    // create a StudentTermData
+    public function create(array $studentTermData): string
+    {
+        /*
+            $studentData must be a subset of the following array:
+
+            [
+                "student_term_data_id" => "",
+                "college_id" => "", // Note: this must match an existing row in the College table
+                "student_id" => "", // Note: this must match an existing row in the Student table
+                "enrollment_status" => "",
+                "term" => "",
+            ]
+
+            returns: string of the student_term_data_id on success, else an empty string
+        */
+        $std = new StudentTermData($studentTermData);
     
-                [
-                    "student_term_data_id" => "",
-                    "college_id" => "", // Note: this must match an existing row in the College table
-                    "student_id" => "", // Note: this must match an existing row in the Student table
-                    "enrollment_status" => "",
-                    "term" => "",
-                ]
-    
-                returns: string of the student_term_data_id on success, else an empty string
-            */
-            $std = new StudentTermData($studentTermData);
-        
-            $createStudentQuery = sprintf("INSERT INTO StudentTermData VALUES (%s)", Sql::getStatementParams(8));
-    
-            if(self::$db->mutatorQuery($createStudentQuery, "ssssssss", ...$std->toRefList())) {
-                return $std->student_id;
-            }
-    
-            return "";
+        $createStudentQuery = sprintf("INSERT INTO StudentTermData VALUES (%s)", Sql::getStatementParams(8));
+
+        if(self::$db->mutatorQuery($createStudentQuery, "ssssssss", ...$std->toRefList())) {
+            return $std->student_id;
         }
+
+        return "";
+    }
 }
 
 ?>

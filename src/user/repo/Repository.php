@@ -47,8 +47,6 @@ class UserRepository
             return $usr->user_id;
         }
 
-
-
         return "";
     }
 

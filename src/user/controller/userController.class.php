@@ -20,15 +20,8 @@ class UserController extends Controller {
     */
     public function process() {
         switch ($this->getMethod()) {
-            case 'POST': 
-                $_success = $this->_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
-                if (!$_success) {
-                    echo $this->response(500);
-                }
-                echo $this->response(201);
-                break;
             case 'PUT':
-                $_user = new User($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+                $_user = new User(["email" => $this->getValueFromBody('email'), "_password" => $this->getValueFromBody('password')]);
                 $_success = $this->_repo->update($_user);
                 if (!$_success) {
                     echo $this->response(500);

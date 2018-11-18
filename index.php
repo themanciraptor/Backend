@@ -25,8 +25,12 @@ $auth = new AuthController($_SERVER['REQUEST_URI']);
 session_control_start();
 
 try {
+    if ($auth->getPath()[0] == 'register') {
+        $auth->register();
+    }
     $auth->process();
     switch ($auth->getPath()[0]) {
+        case 'register':
         case 'login': 
             echo $auth->response(201);
             break;

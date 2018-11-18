@@ -63,6 +63,19 @@ class AuthController extends Controller {
     }
 
     /*
+        register() : registers a new user
+    */
+    public function register() {
+        if ($this->getMethod() != 'POST') {
+            return;
+        }
+        $_success = $this->_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        if (!$_success) {
+            throw new Exception('Unauthorized');
+        }
+    }
+
+    /*
         getToken() : creates a token depending on the role using session_create_id()
                    : session_id() returns the token
     */
