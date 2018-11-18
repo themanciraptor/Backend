@@ -78,29 +78,24 @@ class QueryBuilder
          * 
          *   function queryFunc(string $query, string $typeList, ...values)
          */
+        function processClauses(array $clauseList, string &$joinedClauses, string &$typeList, array &$values) {
+            $i = 0;
+            do {
+                $joinedClauses .= $clauseList[$i]->toString();
+                $typeList .= $clauseList[$i]->getType();
+                array_push($values, $clauseList[$i]->getValue());
+    
+                $i++;
+            } while ($i < count($clauseList) && $joinedClauses .= ', ');
+        }
+
         $fullStatement = "";
         $typeList = "";
         $values = [];
-        
-        $i = 0;
-        do {
-            $fullStatement .= $this->_statements[$i]->toString();
-            $typeList .= $this->_statements[$i]->getType();
-            array_push($values, $this->_statements[$i]->getValue());
-
-            $i++;
-        } while ($i < count($this->_statements) && $fullStatement .= ', ');
-        
         $fullFilters = "";
-        
-        $i = 0;
-        do {
-            $fullFilters .= $this->_filters[$i]->toString();
-            $typeList .= $this->_filters[$i]->getType();
-            array_push($values, $this->_filters[$i]->getValue());
 
-            $i++; 
-        } while($i < count($this->_filters) && $fullFilters .= ', ');
+        processClauses($this->_statements, $fullStatement, $typeList, $values);
+        processClauses($this->_filters, $fullFilters, $typeList, $values);
 
         $query = sprintf($this->_query, $fullStatement, $fullFilters);
 
