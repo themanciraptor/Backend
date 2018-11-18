@@ -50,9 +50,11 @@ try {
         case 'college':
             $college = new CollegeController($_SERVER['REQUEST_URI']);
             $college->process();
+            break;
         case 'studentterm':
             $term = new StudentTermDataController($_SERVER['REQUEST_URI']);
             $term->process();
+            break;
         default:
             $auth->response(404, Array('error' => 'Not Found'));
             break;

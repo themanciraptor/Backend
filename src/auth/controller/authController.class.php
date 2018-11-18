@@ -5,7 +5,7 @@ require_once 'src/user/repo/Repository.php';
 require_once 'src/student/repo/Repository.php';
 
 class AuthController extends Controller {
-    private $_repo;
+    private $_user_repo;
     private $_student_repo;
     /*
         Constructor : takes request and builds Controller parent object
@@ -14,7 +14,7 @@ class AuthController extends Controller {
     public function __construct($request) {
         parent::__construct($request);
         $_db = new Sql();
-        $this->_repo = new UserRepository($_db);
+        $this->_user_repo = new UserRepository($_db);
         $this->_student_repo = new StudentRepository($_db);
     }
 
@@ -42,10 +42,10 @@ class AuthController extends Controller {
         authorizeHelper() : authorizes an unauthorized user
     */
     private function authorize() {
-        if ($this->getMethod() != 'POST' && $this->getPath()[0] != 'login') {
+        if ($this->getMethod() != 'POST' && ($this->getPath()[0] != 'login' || $this->getPath()[0] != 'register')) {
             throw new Exception('Unauthorized');
         }
-        $id = $this->_repo->verify($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        $id = $this->_user_repo->verify($this->getValueFromBody('email'), $this->getValueFromBody('password'));
         //TODO get password hash from database and throw an error if it doesn't match
         if (!$id) {
             throw new Exception('Unauthorized');
@@ -72,8 +72,10 @@ class AuthController extends Controller {
         if ($this->getMethod() != 'POST') {
             return;
         }
-        $_user_success = $this->_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        error_log ('>>> user');
+        $_user_success = $this->_user_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
         $this->authorize();
+        error_log ('>>> student');
         $_student_success = $this->_student_repo->create([
                                 'student_id' => $this->getValueFromBody('student_id'),
                                 'user_id' => $_SESSION['USER_ID'],
