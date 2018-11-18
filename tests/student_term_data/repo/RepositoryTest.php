@@ -24,6 +24,7 @@ class StudentTermDataRepositoryTest extends TestCase
     function test_list_ReturnsListOfUniqueSchools()
     {
         $data = self::$repo->list("200361084");
+        var_dump($data);
         
         $this->assertEquals(2, count($data));
         $this->assertEquals(8, count($data[0]->toRefList()));
@@ -35,27 +36,27 @@ class StudentTermDataRepositoryTest extends TestCase
         $this->assertEquals(1, count($data));
     }
 
-    function test_create_CreatesAStudent()
-    {
-        $std = getExistingStudentTermData();
+    // function test_create_CreatesAStudent()
+    // {
+    //     $std = getExistingStudentTermData();
 
-        $this::$repo->create(get_object_vars($std));
+    //     $this::$repo->create(get_object_vars($std));
 
-        $result = self::$repo->list($std->student_id);
-        $result = $result[0];
-        try{
-            $this->assertEquals($std->student_id, $result->student_id);
-            $this->assertEquals($std->college_id, $result->college_id);
-            $this->assertEquals($std->student_term_data_id, $result->student_term_data_id);
-            $this->assertEquals($std->enrollment_status, $result->enrollment_status);
-            $this->assertEquals($std->term, $result->term);
-            $this->assertEquals(8, count($result->toRefList()));
-            $this->assertNotNull($result->getCreated());
-            $this->assertNotNull($result->getModified());
-        } finally {
-            self::delete($std->student_term_data_id);
-        }
-    }
+    //     $result = self::$repo->list($std->student_id);
+    //     $result = $result[0];
+    //     try{
+    //         $this->assertEquals($std->student_id, $result->student_id);
+    //         $this->assertEquals($std->college_id, $result->college_id);
+    //         $this->assertEquals($std->student_term_data_id, $result->student_term_data_id);
+    //         $this->assertEquals($std->enrollment_status, $result->enrollment_status);
+    //         $this->assertEquals($std->term, $result->term);
+    //         $this->assertEquals(8, count($result->toRefList()));
+    //         $this->assertNotNull($result->getCreated());
+    //         $this->assertNotNull($result->getModified());
+    //     } finally {
+    //         self::delete($std->student_term_data_id);
+    //     }
+    // }
 
     private static function delete($id)
     {

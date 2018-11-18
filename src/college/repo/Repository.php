@@ -27,20 +27,12 @@ class CollegeRepository
 
         $colleges = [];
         do {
-            array_push($colleges, self::nextIteration($ite));
-        } while ($ite->next());
+            $college = new College();
+            $ite->scan(...$college->toRefList());
+        } while ($ite->next() && array_push($colleges, $college));
 
         return $colleges;
     }
-
-    // Helper method that prepares the next iteration for listing colleges
-    private static function nextIteration(RowIteratorInterface &$ite): College
-    {
-        $college = new College();
-        $ite->scan(...$college->toRefList());
-
-        return $college;
-    } 
 }
 
 ?>

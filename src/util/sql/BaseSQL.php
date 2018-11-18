@@ -144,7 +144,7 @@ class RowIterator implements RowIteratorInterface
             /*
             Throw an error if client does not setup value receivers for a row first.
             */
-            throw new Exception('No result receivers set to hold sql row.');
+            throw new SqlPreparedStatementException('No result receivers set to hold sql row.');
         }
         $fetched = $this->_stmt->fetch();
         if (!$fetched) {
