@@ -1,4 +1,7 @@
 <?php
+/**
+ * Automated testing for the User repository methods
+ */
 require_once 'src/util/sql/BaseSQL.php';
 require_once 'src/user/repo/Repository.php';
 require_once 'src/user/model/User.php';
