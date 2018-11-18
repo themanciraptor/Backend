@@ -96,7 +96,7 @@ class QueryBuilder
         $i = 0;
         do {
             $fullFilters .= $this->_filters[$i]->toString();
-            $typeList .= $this->_statements[$i]->getType();
+            $typeList .= $this->_filters[$i]->getType();
             array_push($values, $this->_filters[$i]->getValue());
 
             $i++; 
