@@ -59,7 +59,7 @@ class UserRepositoryTest extends TestCase
         $expectedUser["_password"] = "newpassword";
         $expectedUser = new User($expectedUser);
 
-        self::$repo->update2($expectedUser);
+        self::$repo->update($expectedUser);
         $after = self::$repo->get($id);
 
         $this->assertEquals($expectedUser->email, $after->email);

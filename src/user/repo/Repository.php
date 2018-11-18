@@ -50,31 +50,12 @@ class UserRepository
         return "";
     }
 
-    // update a user
-    public function update(string $userID, array $updateParams): bool
-    {
-        $values = [getSqlNow()];
-        $columns = "modified = ?";
-        $typelist = "ss";
-        foreach ($updateParams as $key => $value) {
-            if($key === "password") {
-                $updateParams[$key] = password_hash($value, PASSWORD_DEFAULT);
-            }
-            $columns .= ", $key = ?";
-            $typelist .= "s";
-        }
-        $updateUserQuery = sprintf("UPDATE User SET %s WHERE user_id = ?", $columns);
-        $values = array_merge($values, array_values($updateParams));
-        array_push($values, $userID);
-        
-        return self::$db->mutatorQuery($updateUserQuery, $typelist, ...$values);
-    }
-
-    public function update2(User $user): bool {
-        $vars = get_object_vars($user);
+    public function update(User $user): bool {
         $query = new QueryBuilder("UPDATE User SET %s WHERE %s");
         $query->addFilter("user_id", "s", $user->user_id)->addModified();
         $user->updatePasswordStatement($query);
+
+        $vars = get_object_vars($user);
         foreach ($vars as $key => $value) {
             $query->addStatement($key, "s", $value);
         }
