@@ -50,6 +50,7 @@ class UserRepository
         return "";
     }
 
+    // update a user
     public function update(User $user): bool {
         $query = new QueryBuilder("UPDATE User SET %s WHERE %s");
         $query->addFilter("user_id", "s", $user->user_id)->addModified();
