@@ -70,7 +70,7 @@ class UserRepository
     public function verify(string $email, string $password): string
     {
         $getByEmail = "SELECT * FROM User WHERE email = ?";
-        $ite = self::$db->accessorQuery($getByemail, "s", $email);
+        $ite = self::$db->accessorQuery($getByEmail, "s", $email);
 
         $user = new User;
         $ite->scan(...$user->toRefList());
