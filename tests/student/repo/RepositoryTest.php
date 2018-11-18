@@ -60,12 +60,12 @@ class StudentRepositoryTest extends TestCase
         $expectedStudent->email = "firsts@hotmeal.com";
         self::$repo->update($expectedStudent);
         $actual = self::$repo->get($userID);
+        self::delete($userID); //delete entry from table now so that row is deleted whether tests pass or not.
 
         $this->assertEquals($expectedStudent->email, $actual->email);
         $this->assertEquals($expectedStudent->user_id, $actual->user_id);
         $this->assertGreaterThan($expectedStudent->getModified(), $actual->getModified());
 
-        self::delete($userID);
     }
 
     private static function delete($id)

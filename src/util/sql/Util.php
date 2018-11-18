@@ -74,11 +74,10 @@ class QueryBuilder
     public function doMutatorQuery(SqlInterface $db): bool
     {
         /**
-         * Do the query via a custom query function. This query function must have the following signature:
-         * 
-         *   function queryFunc(string $query, string $typeList, ...values)
+         * Perform a mutator query 
          */
-        function processClauses(array $clauseList, string &$joinedClauses, string &$typeList, array &$values) {
+        function processClauses(array $clauseList, string &$typeList, array &$values): string {
+            $joinedClauses = "";
             $i = 0;
             do {
                 $joinedClauses .= $clauseList[$i]->toString();
@@ -87,15 +86,15 @@ class QueryBuilder
     
                 $i++;
             } while ($i < count($clauseList) && $joinedClauses .= ', ');
+
+            return $joinedClauses;
         }
 
-        $fullStatement = "";
         $typeList = "";
         $values = [];
-        $fullFilters = "";
 
-        processClauses($this->_statements, $fullStatement, $typeList, $values);
-        processClauses($this->_filters, $fullFilters, $typeList, $values);
+        $fullStatement = processClauses($this->_statements, $typeList, $values);
+        $fullFilters = processClauses($this->_filters, $typeList, $values);
 
         $query = sprintf($this->_query, $fullStatement, $fullFilters);
 

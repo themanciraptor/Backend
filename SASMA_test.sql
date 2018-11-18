@@ -74,6 +74,7 @@ CREATE TABLE `Student` (
 
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
+INSERT INTO `Student` VALUES ('200303299','st-000001','Carl','Marks','redsocs@rus.com','Brückengasse 664','2018-11-17 23:29:26','2018-11-17 23:29:26',NULL);
 INSERT INTO `Student` VALUES ('200361084','testid','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 INSERT INTO `Student` VALUES ('500XXX','','Evening','Star','Elendil@mirk.ru','1 dead balrog','2018-11-17 17:52:58','2018-11-17 17:52:58',NULL);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
@@ -167,6 +168,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES ('5bf1c5862e963','$2y$10$yaCoA3IyyuJg4VQcqV10.unwIzR8UPO6i/ubNvki6nHe6VN4SI1RG','seconds@hotmeal.com',0,'2018-11-19 02:03:18','2018-11-19 02:03:18',NULL);
 INSERT INTO `User` VALUES ('atestid','$2y$10$odCNzkNVFcZCGmnj6AoD5ukYWjorkJnjyxb3OosuMIvJq4WbvvfQa','combined@harms.com',0,'2018-11-18 13:02:04','2018-11-18 13:02:04',NULL);
 INSERT INTO `User` VALUES ('jw200','$2y$10$1N3xBBogiH4/r.Vtiw8Vo.zhtF6UZMucYgZ4qGtLvf6bOI6SgK/li','jjwrubleski21@gmail.com',0,'2018-11-18 12:19:42','2018-11-18 12:19:42',NULL);
 INSERT INTO `User` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
@@ -183,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-18 13:56:24
+-- Dump completed on 2018-11-18 16:37:39
