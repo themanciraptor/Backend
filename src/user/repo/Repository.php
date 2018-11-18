@@ -36,7 +36,7 @@ class UserRepository
     {
         $userParams = [
             'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
+            '_password' => password_hash($password, PASSWORD_DEFAULT),
             'user_id' => $userID ? $userID : uniqid(),
         ]; 
         
@@ -70,11 +70,23 @@ class UserRepository
         return self::$db->mutatorQuery($updateUserQuery, $typelist, ...$values);
     }
 
+    public function update2(User $user): bool {
+        $vars = get_object_vars($user);
+        $query = new QueryBuilder("UPDATE User SET %s WHERE %s");
+        $query->addFilter("user_id", "s", $user->user_id)->addModified();
+        $user->updatePasswordStatement($query);
+        foreach ($vars as $key => $value) {
+            $query->addStatement($key, "s", $value);
+        }
+
+        return $query->doQuery(function($query, $typelist, ...$values): bool {return self::$db->mutatorQuery($query, $typelist, ...$values);});
+    }
+
     // verify a users credentials and get the appropriate id
     public function verify(string $email, string $password): string
     {
         $getByEmail = "SELECT * FROM User WHERE email = ?";
-        $ite = self::$db->accessorQuery($getUserQuery, "s", $email);
+        $ite = self::$db->accessorQuery($getByemail, "s", $email);
 
         $user = new User;
         $ite->scan(...$user->toRefList());
