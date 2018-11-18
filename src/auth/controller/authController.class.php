@@ -2,9 +2,11 @@
 require_once 'src/util/controller/controller.class.php';
 require_once 'src/util/sql/BaseSQL.php';
 require_once 'src/user/repo/Repository.php';
+require_once 'src/student/repo/Repository.php';
 
 class AuthController extends Controller {
     private $_repo;
+    private $_student_repo;
     /*
         Constructor : takes request and builds Controller parent object
         Params : $request object (the path)
@@ -13,6 +15,7 @@ class AuthController extends Controller {
         parent::__construct($request);
         $_db = new Sql();
         $this->_repo = new UserRepository($_db);
+        $this->_student_repo = new StudentRepository($_db);
     }
 
     /*
@@ -69,8 +72,16 @@ class AuthController extends Controller {
         if ($this->getMethod() != 'POST') {
             return;
         }
-        $_success = $this->_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
-        if (!$_success) {
+        $_user_success = $this->_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        $_student_success = $this->_student_repo->create([
+                                'student_id' => $this->getValueFromBody('student_id'),
+                                'user_id' => $_SESSION['USER_ID'],
+                                'first_name' => $this->getValueFromBody('first_name'),
+                                'last_name' => $this->getValueFromBody('last_name'),
+                                'email' => $this->getValueFromBody('email'),
+                                'address' => $this->getValueFromBody('address'),
+                            ]);
+        if (!$_user_success || !$_student_success) {
             throw new Exception('Unauthorized');
         }
     }
