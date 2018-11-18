@@ -31,7 +31,7 @@ abstract class Controller {
         return $this->body;
     }
     public function getValueFromBody($key) {
-        return array_key_exists($key, $this->body) ? $this->body[$key] : null;
+        return array_key_exists($key, $this->body) ? $this->body[$key] : '';
     }
 
     /*

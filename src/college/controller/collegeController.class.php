@@ -1,13 +1,18 @@
 <?php
-require_once 'controller.class.php';
+require_once 'src/util/controller/controller.class.php';
+require_once 'src/college/repo/Repository.php';
+require_once 'src/util/sql/BaseSQL.php';
 
-class UserController extends Controller {
+class CollegeController extends Controller {
+    private $_repo;
     /*
         Constructor : takes request and builds Controller parent object
         Params : $request object (the path)
     */
     public function __construct($request) {
         parent::__construct($request);
+        $_db = new Sql();
+        $this->_repo = new CollegeRepository($_db);
     }
 
     /*
@@ -16,16 +21,11 @@ class UserController extends Controller {
     public function process() {
         switch ($this->getMethod()) {
             case 'GET':
-                echo $this->response(200, Array('email' => 'get@derpmail.com'));
-                break;
-            case 'POST': 
-                echo $this->response(200, Array('name' => 'post@derpmail.com'));
-                break;
-            case 'PUT':
-                echo $this->response(200, Array('name' => 'put@derpmail.com'));
-                break;
-            case 'DELETE':
-                echo $this->response(201);
+                $_data = $this->_repo->list();
+                if (!$_data) {
+                    echo $this->response(500);
+                }
+                echo $this->response(200, $_data);
                 break;
             default:
                 throw new Exception('Method Not Allowed');

@@ -2,9 +2,11 @@
 /*
     ENTRY POINT
 */
-require_once 'controllers/authController.class.php';
-require_once 'controllers/studentController.class.php';
-require_once 'controllers/userController.class.php';
+require_once 'src/auth/controller/authController.class.php';
+require_once 'src/student/controller/studentController.class.php';
+require_once 'src/user/controller/userController.class.php';
+require_once 'src/college/controller/collegeController.class.php';
+require_once 'src/student_term_data/controller/studentTermDataController.class.php';
 
 function session_control_start() {
     session_start();
@@ -23,12 +25,19 @@ $auth = new AuthController($_SERVER['REQUEST_URI']);
 session_control_start();
 
 try {
-    $auth->process();
+    if ($auth->getPath()[0] == 'register') {
+        $auth->register();
+    } else {
+        $auth->process();
+    }
     switch ($auth->getPath()[0]) {
+        case 'register':
         case 'login': 
+            echo $auth->response(201);
             break;
         case 'logout': 
             $auth->deauthorize();
+            echo $auth->response(201);
             break;
         case 'student':
             $student = new StudentController($_SERVER['REQUEST_URI']);
@@ -37,6 +46,14 @@ try {
         case 'user':
             $user = new UserController($_SERVER['REQUEST_URI']);
             $user->process();
+            break;
+        case 'college':
+            $college = new CollegeController($_SERVER['REQUEST_URI']);
+            $college->process();
+            break;
+        case 'studentterm':
+            $term = new StudentTermDataController($_SERVER['REQUEST_URI']);
+            $term->process();
             break;
         default:
             $auth->response(404, Array('error' => 'Not Found'));

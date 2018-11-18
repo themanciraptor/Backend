@@ -1,13 +1,21 @@
 <?php
-require_once 'controller.class.php';
+require_once 'src/util/controller/controller.class.php';
+require_once 'src/util/sql/BaseSQL.php';
+require_once 'src/user/repo/Repository.php';
+require_once 'src/student/repo/Repository.php';
 
 class AuthController extends Controller {
+    private $_user_repo;
+    private $_student_repo;
     /*
         Constructor : takes request and builds Controller parent object
         Params : $request object (the path)
     */
     public function __construct($request) {
         parent::__construct($request);
+        $_db = new Sql();
+        $this->_user_repo = new UserRepository($_db);
+        $this->_student_repo = new StudentRepository($_db);
     }
 
     /*
@@ -34,18 +42,17 @@ class AuthController extends Controller {
         authorizeHelper() : authorizes an unauthorized user
     */
     private function authorize() {
-        if ($this->getMethod() != 'POST' && $this->getPath()[0] != 'login') {
+        if ($this->getMethod() != 'POST' && ($this->getPath()[0] != 'login' || $this->getPath()[0] != 'register')) {
             throw new Exception('Unauthorized');
         }
-        //throws error when email or password don't exist
-        $email = $this->getValueFromBody('email');
-        $password = $this->getValueFromBody('password');
+        $id = $this->_user_repo->verify($this->getValueFromBody('email'), $this->getValueFromBody('password'));
         //TODO get password hash from database and throw an error if it doesn't match
-        if ($email === null || $password === null) {
+        if (!$id) {
             throw new Exception('Unauthorized');
         }
         $this->getToken();
         $_SESSION['USER_TOKEN'] = session_id();
+        $_SESSION['USER_ID'] = $id;
         return true;
     }
 
@@ -53,9 +60,33 @@ class AuthController extends Controller {
         deauthorize() : removes authorization
     */
     public function deauthorize() {
-        $_SESSION['USER_EMAIL'] = null;
         $_SESSION['USER_TOKEN'] = null;
+        $_SESSION['USER_ID'] = null;
         session_destroy();
+    }
+
+    /*
+        register() : registers a new user
+    */
+    public function register() {
+        if ($this->getMethod() != 'POST') {
+            return;
+        }
+        error_log ('>>> user');
+        $_user_success = $this->_user_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        $this->authorize();
+        error_log ('>>> student');
+        $_student_success = $this->_student_repo->create([
+                                'student_id' => $this->getValueFromBody('student_id'),
+                                'user_id' => $_SESSION['USER_ID'],
+                                'first_name' => $this->getValueFromBody('first_name'),
+                                'last_name' => $this->getValueFromBody('last_name'),
+                                'email' => $this->getValueFromBody('email'),
+                                'address' => $this->getValueFromBody('address'),
+                            ]);
+        if (!$_user_success || !$_student_success) {
+            throw new Exception('Unauthorized');
+        }
     }
 
     /*
@@ -69,20 +100,11 @@ class AuthController extends Controller {
             session_start();
         }
 
-        $role = $this->getRole();
-        $new_session_id = session_create_id($role);
+        $new_session_id = session_create_id();
         $_SESSION['TIMEOUT'] = time();
         session_commit();
         session_id($new_session_id);
         session_start();
-    }
-    
-    /*
-        getRole() : returns the role as a string
-    */
-    private function getRole() {
-        //TODO define roles
-        return 'user';
     }
 }
 
