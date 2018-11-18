@@ -167,6 +167,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES ('atestid','$2y$10$odCNzkNVFcZCGmnj6AoD5ukYWjorkJnjyxb3OosuMIvJq4WbvvfQa','combined@harms.com',0,'2018-11-18 13:02:04','2018-11-18 13:02:04',NULL);
 INSERT INTO `User` VALUES ('jw200','$2y$10$1N3xBBogiH4/r.Vtiw8Vo.zhtF6UZMucYgZ4qGtLvf6bOI6SgK/li','jjwrubleski21@gmail.com',0,'2018-11-18 12:19:42','2018-11-18 12:19:42',NULL);
 INSERT INTO `User` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 INSERT INTO `User` VALUES ('testid','$2y$10$35z4eRm2Mamv.NGKRF7Eq.ETp1GsF78DbIiZiXDh6S0j4v.Yi1G9a','jjwrubleski21@gmail.com',0,'2018-11-17 09:18:27','2018-11-17 09:18:27',NULL);
@@ -182,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-18  0:48:57
+-- Dump completed on 2018-11-18  1:09:59

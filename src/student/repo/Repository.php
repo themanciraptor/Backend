@@ -62,26 +62,21 @@ class StudentRepository
     }
 
     // update a student by user_id
-    // public function update(string $userID, array $updateParams): bool
-    // {
-    //     $values = [getSqlNow()];
-    //     $columns = "modified = ?";
-    //     $typelist = "ss";
+    public function update(Student $student): bool
+    {
+        $query = (new QueryBuilder("UPDATE Student SET %s WHERE %s"))
+            ->addFilter("user_id", "s", $student->user_id)
+            ->addModified();
 
-    //     // don't want to attempt updating the keys
-    //     unset($updateParams['user_id']);
-    //     unset($updateParams['student_id']);
+        $vars = get_object_vars($student);
+        foreach ($vars as $key => $value) {
+            $query->addStatement($key, "s", $value);
+        }
 
-    //     foreach ($student as $key => $value) {
-    //         $columns .= ", $key = ?";
-    //         $typelist .= "s";
-    //     }
-
-    //     $updateUserQuery = "UPDATE Student SET %s WHERE user_id = `$userID`";
-
-    //     return self::$db->mutatorQuery($updateUserQuery, $typelist, ...$updateParams);
-    // }
-
+        return $query->doQuery(function($query, $typelist, ...$values): bool {
+            return self::$db->mutatorQuery($query, $typelist, ...$values
+        );});
+    }
 }
 
 ?>
