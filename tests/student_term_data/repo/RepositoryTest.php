@@ -42,19 +42,17 @@ class StudentTermDataRepositoryTest extends TestCase
         $this::$repo->create(get_object_vars($std));
 
         $result = self::$repo->list($std->student_id);
+        self::delete($std->student_term_data_id); // delete now so that data doesn't remain after a test failure
+
         $result = $result[0];
-        try{
-            $this->assertEquals($std->student_id, $result->student_id);
-            $this->assertEquals($std->college_id, $result->college_id);
-            $this->assertEquals($std->student_term_data_id, $result->student_term_data_id);
-            $this->assertEquals($std->enrollment_status, $result->enrollment_status);
-            $this->assertEquals($std->term, $result->term);
-            $this->assertEquals(8, count($result->toRefList()));
-            $this->assertNotNull($result->getCreated());
-            $this->assertNotNull($result->getModified());
-        } finally {
-            self::delete($std->student_term_data_id);
-        }
+        $this->assertEquals($std->student_id, $result->student_id);
+        $this->assertEquals($std->college_id, $result->college_id);
+        $this->assertEquals($std->student_term_data_id, $result->student_term_data_id);
+        $this->assertEquals($std->enrollment_status, $result->enrollment_status);
+        $this->assertEquals($std->term, $result->term);
+        $this->assertEquals(8, count($result->toRefList()));
+        $this->assertNotNull($result->getCreated());
+        $this->assertNotNull($result->getModified());
     }
 
     private static function delete($id)
