@@ -1,6 +1,7 @@
 <?php
 /**
- * User Repository is for basic data update or access to user table.
+ * User Repository provides a programming interface for the app allowing
+ * access to the User table.
  * 
  * @author: Ezra Carter
  */
