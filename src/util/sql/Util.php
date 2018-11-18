@@ -23,9 +23,7 @@ class QueryBuilder
      * 
      * Usage:
      *  $query = new QueryBuilder("SELECT * FROM %s").addFilter('column_name', "s", "equals this");
-     *  return $query->doQuery(function($query, $typelist, ...$values): bool {
-     *      return self::$db->mutatorQuery($query, $typelist, ...$values
-     *  );});
+     *  return $query->doMutatorQuery($db);
      * 
      * Future work: Move db into Querybuilder so it no longer relies on the user implementing/using existing Sql lib.
      * Plus callback is redundant at the moment.
