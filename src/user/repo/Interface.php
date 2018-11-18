@@ -7,10 +7,10 @@
 require_once "src/user/model/User.php";
 
 interface UserInterface {
-    public function update(User $user): bool;
-    public function create(string $email, string $password, string $userID = null): string;
-    public function verify(string $email, string $password): string;
     public function get(string $id): User;
+    public function create(string $email, string $password, string $userID = null): string;
+    public function update(User $user): bool;
+    public function verify(string $email, string $password): string;
 }
 
 ?>

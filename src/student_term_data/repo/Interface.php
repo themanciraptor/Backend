@@ -6,7 +6,8 @@
  */
 
 interface StudentTermDataInterface {
-    public function list($user_id): array;
+    public function list(string $student_id): array;
+    public function create(array $studentTermData): string;
 }
 
 ?>
