@@ -7,7 +7,6 @@
 require_once "src/util/sql/BaseSQL.php";
 require_once "src/util/sql/Util.php";
 require_once "src/util/sql/Interface.php";
-require_once "src/util/repo/BaseRepository.php";
 require_once "src/student/model/Student.php";
 
 class StudentRepository
@@ -54,7 +53,6 @@ class StudentRepository
         $student = new Student($studentData);
     
         $createStudentQuery = sprintf("INSERT INTO Student VALUES (%s)", Sql::getStatementParams(9));
-        var_dump($student->toRefList());
 
         if(self::$db->mutatorQuery($createStudentQuery, "sssssssss", ...$student->toRefList())) {
             return $student->student_id;
@@ -64,26 +62,19 @@ class StudentRepository
     }
 
     // update a student by user_id
-    // public function update(string $userID, array $updateParams): bool
-    // {
-    //     $values = [getSqlNow()];
-    //     $columns = "modified = ?";
-    //     $typelist = "ss";
+    public function update(Student $student): bool
+    {
+        $query = (new QueryBuilder("UPDATE Student SET %s WHERE %s"))
+            ->addFilter("user_id", "s", $student->user_id)
+            ->addModified();
 
-    //     // don't want to attempt updating the keys
-    //     unset($updateParams['user_id']);
-    //     unset($updateParams['student_id']);
+        $vars = get_object_vars($student);
+        foreach ($vars as $key => $value) {
+            $query->addStatement($key, "s", $value);
+        }
 
-    //     foreach ($student as $key => $value) {
-    //         $columns .= ", $key = ?";
-    //         $typelist .= "s";
-    //     }
-
-    //     $updateUserQuery = "UPDATE Student SET %s WHERE user_id = `$userID`";
-
-    //     return self::$db->mutatorQuery($updateUserQuery, $typelist, ...$updateParams);
-    // }
-
+        return $query->doMutatorQuery(self::$db);
+    }
 }
 
 ?>

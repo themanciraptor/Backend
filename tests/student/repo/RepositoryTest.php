@@ -4,7 +4,7 @@ require_once 'src/student/repo/Repository.php';
 require_once 'tests/student/common.php';
 use PHPUnit\Framework\TestCase;
 
-class UserRepositoryTest extends TestCase
+class StudentRepositoryTest extends TestCase
 {
     protected static $dbh;
     protected static $repo;
@@ -50,21 +50,23 @@ class UserRepositoryTest extends TestCase
         self::delete($stud->user_id);
     }
 
-    // function test_update_UpdatesAUser()
-    // {
-    //     $id = self::$repo->create('seconds@hotmeal.com', 'mahpassword');
-    //     $expectedUser = self::$repo->get($id);
-    //     sleep(1); // modified only stamps the time down to the nearest second, need to wait so the modified time will be different
+    function test_update_UpdatesAStudent()
+    {
+        $userID = 'atestid';
+        self::$repo->create(['email' =>'combined@harms.com', 'user_id' => $userID]);
+        $expectedStudent = self::$repo->get($userID);
+        sleep(1); // modified only stamps the time down to the nearest second, need to wait so the modified time will be different
 
-    //     $expectedUser->email = "firsts@hotmeal.com";
-    //     self::$repo->update($id, ['email' => $expectedUser->email]);
-    //     $actual = self::$repo->get($id);
+        $expectedStudent->email = "firsts@hotmeal.com";
+        self::$repo->update($expectedStudent);
+        $actual = self::$repo->get($userID);
 
-    //     $this->assertEquals($expectedUser->email, $actual->email);
-    //     $this->assertGreaterThan($expectedUser->getModified(), $actual->getModified());
+        $this->assertEquals($expectedStudent->email, $actual->email);
+        $this->assertEquals($expectedStudent->user_id, $actual->user_id);
+        $this->assertGreaterThan($expectedStudent->getModified(), $actual->getModified());
 
-    //     self::delete($id);
-    // }
+        self::delete($userID);
+    }
 
     private static function delete($id)
     {
