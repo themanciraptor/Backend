@@ -11,14 +11,14 @@ class User extends BaseModel
 {
     // Note that these fields must match the order of the columns in sql
     public $user_id = "";
-    private $password = "";
+    private $_password = "";
     public $email = "";
     public $is_admin = false;
     
     function __construct(array $params = [])
     {
-        $this->password = array_key_exists("password", $params) ? $params['password']: "";
-        unset($params['password']);
+        $this->_password = array_key_exists("_password", $params) ? $params['_password']: "";
+        unset($params['_password']);
 
         parent::__construct($params);
     }
@@ -26,14 +26,21 @@ class User extends BaseModel
     public function toRefList(): array
     {
         $reflist = parent::toRefList();
-        array_splice( $reflist, 1, 0, array('password' => &$this->password) );
+        array_splice( $reflist, 1, 0, array('_password' => &$this->_password) );
 
         return $reflist;
     }
 
-    function verifyPassword($password): bool
+    function verifyPassword($_password): bool
     {
-        return password_verify($password, $this->password);
+        return password_verify($_password, $this->_password);
+    }
+
+    function updatePasswordStatement(QueryBuilder $qb): QueryBuilder
+    {
+        $qb->addStatement("password", "s", password_hash($this->_password, PASSWORD_DEFAULT));
+
+        return $qb;
     }
 }
 ?>
