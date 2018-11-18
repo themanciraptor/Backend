@@ -4,7 +4,7 @@ require_once 'src/student/repo/Repository.php';
 require_once 'tests/student/common.php';
 use PHPUnit\Framework\TestCase;
 
-class UserRepositoryTest extends TestCase
+class StudentRepositoryTest extends TestCase
 {
     protected static $dbh;
     protected static $repo;
