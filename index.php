@@ -27,8 +27,9 @@ session_control_start();
 try {
     if ($auth->getPath()[0] == 'register') {
         $auth->register();
+    } else {
+        $auth->process();
     }
-    $auth->process();
     switch ($auth->getPath()[0]) {
         case 'register':
         case 'login': 

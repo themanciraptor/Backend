@@ -73,6 +73,7 @@ class AuthController extends Controller {
             return;
         }
         $_user_success = $this->_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        $this->authorize();
         $_student_success = $this->_student_repo->create([
                                 'student_id' => $this->getValueFromBody('student_id'),
                                 'user_id' => $_SESSION['USER_ID'],
