@@ -52,9 +52,9 @@ class UserRepository
 
     // update a user
     public function update(User $user): bool {
-        $query = new QueryBuilder("UPDATE User SET %s WHERE %s");
-        $query->addFilter("user_id", "s", $user->user_id)->addModified();
-        $user->updatePasswordStatement($query);
+        $query = $user->updatePasswordStatement(new QueryBuilder("UPDATE User SET %s WHERE %s"))
+            ->addFilter("user_id", "s", $user->user_id)
+            ->addModified();
 
         $vars = get_object_vars($user);
         foreach ($vars as $key => $value) {
