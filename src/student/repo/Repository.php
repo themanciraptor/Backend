@@ -54,7 +54,6 @@ class StudentRepository
         $student = new Student($studentData);
     
         $createStudentQuery = sprintf("INSERT INTO Student VALUES (%s)", Sql::getStatementParams(9));
-        var_dump($student->toRefList());
 
         if(self::$db->mutatorQuery($createStudentQuery, "sssssssss", ...$student->toRefList())) {
             return $student->student_id;

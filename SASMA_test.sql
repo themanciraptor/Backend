@@ -168,52 +168,6 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES ('5bf0c38268fa0','$2y$10$OKYbIIWOT/EErkCF4Qe4..5fKgJ7YLiZd4m57MSF0n7LyIHRja/l6','seconds@hotmeal.com',0,'2018-11-18 07:42:26','2018-11-18 07:42:26',NULL);
-INSERT INTO `User` VALUES ('5bf0c4a427ed8','$2y$10$GgFNk/k3rKRJ4J0pbBm2beJKRGBZO/YTjsc2LLQ2U7ev8N8d4YBGW','seconds@hotmeal.com',0,'2018-11-18 07:47:16','2018-11-18 07:47:16',NULL);
-INSERT INTO `User` VALUES ('5bf0c4beac8b7','$2y$10$C7Qf.xSDDRBia7S/Ke2pteoHXbwBSHjKLfpH4dsUreia15G4h7t3i','seconds@hotmeal.com',0,'2018-11-18 07:47:42','2018-11-18 07:47:42',NULL);
-INSERT INTO `User` VALUES ('5bf0c66001e81','$2y$10$Lpw67mkezmmytImeyjx/DOSoj49sYRbrBl0fIjIfjTu6pkYwUa6GW','seconds@hotmeal.com',0,'2018-11-18 07:54:40','2018-11-18 07:54:40',NULL);
-INSERT INTO `User` VALUES ('5bf0c686c93d6','$2y$10$UAlcyAga13GnT/mDQSpom.xHrCe3Wp09QMgmRqBUqmidDOf5G87Li','seconds@hotmeal.com',0,'2018-11-18 07:55:18','2018-11-18 07:55:18',NULL);
-INSERT INTO `User` VALUES ('5bf0c69331287','$2y$10$PUKbd0zXXeOdcawerhsXZu899RqbFW5nvVGAtaLldKtGud4kNxj7m','seconds@hotmeal.com',0,'2018-11-18 07:55:31','2018-11-18 07:55:31',NULL);
-INSERT INTO `User` VALUES ('5bf0c69fa1706','$2y$10$.zMnj2tPiFyYwFcALA2jX.eFOCJYOUYJULSQBjrBT5SN906Burkiy','seconds@hotmeal.com',0,'2018-11-18 07:55:43','2018-11-18 07:55:43',NULL);
-INSERT INTO `User` VALUES ('5bf0c6bd87ac9','$2y$10$XeS8BaHI.yhqovsTG2nloeKDhuqLFh9pc63cKFd3/a2TkfcKnKfYi','seconds@hotmeal.com',0,'2018-11-18 07:56:13','2018-11-18 07:56:13',NULL);
-INSERT INTO `User` VALUES ('5bf0c90eb6690','$2y$10$q1ldbq8K/qMW5XS5xwayJu9.5uDa1dOjnwdkx/HeuPZ.aFIfCpavK','seconds@hotmeal.com',0,'2018-11-18 08:06:06','2018-11-18 08:06:06',NULL);
-INSERT INTO `User` VALUES ('5bf0c9370d9ba','$2y$10$0TdFWJKuD1mBT/mXD7ZQAe05o2xn19zqhJ5L2Zr8AnXrx418c0Ry6','seconds@hotmeal.com',0,'2018-11-18 08:06:47','2018-11-18 08:06:47',NULL);
-INSERT INTO `User` VALUES ('5bf0c99306bd6','$2y$10$D8JBdo/SweNshSn1qSFp7Oab1568vA2ro23ouK4Zmo.CpDlCXxhi.','seconds@hotmeal.com',0,'2018-11-18 08:08:19','2018-11-18 08:08:19',NULL);
-INSERT INTO `User` VALUES ('5bf0c9c534bb5','$2y$10$4TIEg37rkpUUSau05ArXQO8Ko2m2U1aWrVfOJY098hM1EGnHTo7QC','seconds@hotmeal.com',0,'2018-11-18 08:09:09','2018-11-18 08:09:09',NULL);
-INSERT INTO `User` VALUES ('5bf0cb3f9fc56','$2y$10$3q.wymdQmfcQGWTHLxIp2e8i7z7fyiTYiq3qeZkLwDnQc/GUoGSnC','seconds@hotmeal.com',0,'2018-11-18 08:15:27','2018-11-18 08:15:27',NULL);
-INSERT INTO `User` VALUES ('5bf0cb5556d5d','$2y$10$tcVyLqWS0SOfJVuxsbBDoeuNT2F8YW7XsKzxHzhKRnneBR3WAkKPm','seconds@hotmeal.com',0,'2018-11-18 08:15:49','2018-11-18 08:15:49',NULL);
-INSERT INTO `User` VALUES ('5bf0cb94a7b2d','$2y$10$RrT6PX0gQimX23D2FzjGw.rBUGnNny66fYr.KGXARHU160YILXn.K','seconds@hotmeal.com',0,'2018-11-18 08:16:52','2018-11-18 08:16:52',NULL);
-INSERT INTO `User` VALUES ('5bf0cc439b6c3','$2y$10$NqY1Z3n16H6wkrdlOcJJL..CisdKicBT3uvsWSKHcjv6uuHpwB/iC','seconds@hotmeal.com',0,'2018-11-18 08:19:47','2018-11-18 08:19:47',NULL);
-INSERT INTO `User` VALUES ('5bf0ccc558e41','$2y$10$8Cs38y2btuqgMk1zhZCXp.68UqAcJPqON4Y7.GY2JK/KsL/c/HFt.','seconds@hotmeal.com',0,'2018-11-18 08:21:57','2018-11-18 08:21:57',NULL);
-INSERT INTO `User` VALUES ('5bf0cd26bce1b','$2y$10$vITqQa3S53Waiku0bZMs.u9rb2NDTC4fC5cQN6I1V5tu2voXtrBsC','seconds@hotmeal.com',0,'2018-11-18 08:23:34','2018-11-18 08:23:34',NULL);
-INSERT INTO `User` VALUES ('5bf0cd3bd1dc5','$2y$10$apSiit3orui.Vsn67Nmw5Ofb/QTMsIFWUuOqdUFZH2qcCd.qJxfWG','seconds@hotmeal.com',0,'2018-11-18 08:23:55','2018-11-18 08:23:55',NULL);
-INSERT INTO `User` VALUES ('5bf0cd720394b','$2y$10$IaZvAyJWjQRTrAvboSA2meA3LkmQZ1x2XHVzsrp.po7TLr9AxjHB2','seconds@hotmeal.com',0,'2018-11-18 08:24:50','2018-11-18 08:24:50',NULL);
-INSERT INTO `User` VALUES ('5bf0cde9bcb0c','$2y$10$y2SMrktlPgK0OVsvWw6hOu4g3OLsKTP8mmL/zjViekh3ejrfVmNme','firsts@hotmeal.com',0,'2018-11-18 08:26:49','2018-11-18 08:26:49',NULL);
-INSERT INTO `User` VALUES ('5bf0ce4ba3fab','$2y$10$L3/SXeQCyIKr5LvdxCoQW.oYZ4yaDQtDy/aPOaG8epfcySJwuPqKO','firsts@hotmeal.com',0,'2018-11-18 08:28:27','2018-11-18 08:28:27',NULL);
-INSERT INTO `User` VALUES ('5bf0cede96b76','$2y$10$qE/cwYY3t020kaVszjqVfOILIoCpwj1/UgqPz9/uWUOEnPiitVgtK','firsts@hotmeal.com',0,'2018-11-18 08:30:54','2018-11-18 08:30:54',NULL);
-INSERT INTO `User` VALUES ('5bf0ceef5ddc5','$2y$10$5WklZ1u4fh9XtrsnK5b3Vup/5F0EEa1bgvy7AxWb52LNdD5iW0wtu','firsts@hotmeal.com',0,'2018-11-18 08:31:11','2018-11-18 08:31:11',NULL);
-INSERT INTO `User` VALUES ('5bf0cefa3f532','$2y$10$6aqdDwPjYZAbIzIXdbWE1O6quzfP6McH/eJ/9BV6rXowx7BovaPDK','firsts@hotmeal.com',0,'2018-11-18 08:31:22','2018-11-18 08:31:22',NULL);
-INSERT INTO `User` VALUES ('5bf0d0431e96d','$2y$10$wtTDVoEfmmKwl0bSnRpa.Obpu68NIjdcieMieThqHYx4cNYlVYBPu','seconds@hotmeal.com',0,'2018-11-18 08:36:51','2018-11-18 08:36:54',NULL);
-INSERT INTO `User` VALUES ('5bf0d05d42c6f','$2y$10$WMx6BOsx1a1RozAXFdYG2efJcI84hM.fF0p5MWJH7epv/V5V58k2W','seconds@hotmeal.com',0,'2018-11-18 08:37:17','2018-11-18 08:37:20',NULL);
-INSERT INTO `User` VALUES ('5bf0d074ca3cc','$2y$10$eJQwX30dv9qVxAr/BFlH2u4uUfXT1yoVl0WSAZjb28XRV4mMBolJC','seconds@hotmeal.com',0,'2018-11-18 08:37:40','2018-11-18 08:37:43',NULL);
-INSERT INTO `User` VALUES ('5bf0d10b22ec8','$2y$10$sDEK3cfUb0b4TlUkt6h.9e9QGnBBrNWpiQEJXQPFByLGSHmJjWbRu','seconds@hotmeal.com',0,'2018-11-18 08:40:11','2018-11-18 08:40:14',NULL);
-INSERT INTO `User` VALUES ('5bf0d13a783a9','$2y$10$fFDCF4Unkp3YWqcltiWPfO5M9zXTOl8cz.YZ.BmSk8pTuyiD7qBEW','seconds@hotmeal.com',0,'2018-11-18 08:40:58','2018-11-18 08:41:01',NULL);
-INSERT INTO `User` VALUES ('5bf0d1e931969','$2y$10$ptbXHVDEIsZB2QMXUFbmO.Plh71VT9AiT/UMH1S/xyBkVsQ2z0fke','seconds@hotmeal.com',0,'2018-11-18 08:43:53','2018-11-18 08:43:56',NULL);
-INSERT INTO `User` VALUES ('5bf0d23033be3','$2y$10$AhlVIwfTlL5ryodq5SfpEuQyAzXuc7e8Otv0sp5XLcGav.WQ4aKY.','seconds@hotmeal.com',0,'2018-11-18 08:45:04','2018-11-18 08:45:07',NULL);
-INSERT INTO `User` VALUES ('5bf0d237ad3d9','$2y$10$4dPNdwM12WLNSSCWYuh5NuutT7tTVxbAGhp.AL3R/NdQM5RvV3.h6','seconds@hotmeal.com',0,'2018-11-18 08:45:11','2018-11-18 08:45:14',NULL);
-INSERT INTO `User` VALUES ('5bf0d2dbe8a37','$2y$10$Hhmhjv2m4ePzsf6q5UMlNub69yelVKmSNDqf2mgmhHFpilIguW.42','seconds@hotmeal.com',0,'2018-11-18 08:47:55','2018-11-18 08:47:55',NULL);
-INSERT INTO `User` VALUES ('5bf0d3104564a','$2y$10$Yo4Irc0cI/EtmJlE2RJKfOZRBtCn6TOcFa1MyJrtvqvhqCwE2bQ9K','seconds@hotmeal.com',0,'2018-11-18 08:48:48','2018-11-18 08:48:51',NULL);
-INSERT INTO `User` VALUES ('5bf0d32bb934a','$2y$10$2N6c.IXf28SDbrS.uXvw5elwPQn/FNsWPcSuTSbBG0lfyV7qgJfri','seconds@hotmeal.com',0,'2018-11-18 08:49:15','2018-11-18 08:49:18',NULL);
-INSERT INTO `User` VALUES ('5bf0d36739a4e','$2y$10$JrUdYGlX8Os647aTstp6gewuIUHt5y.OMnhvmn9QRMyTRyVLsQ71a','seconds@hotmeal.com',0,'2018-11-18 08:50:15','2018-11-18 08:50:18',NULL);
-INSERT INTO `User` VALUES ('5bf0d3968e6ce','$2y$10$ma5z6pv4HnY91ujAHRPOd.VUVOM6qzvGuK/dJ6o1GAy7o0uGha1du','seconds@hotmeal.com',0,'2018-11-18 08:51:02','2018-11-18 08:51:05',NULL);
-INSERT INTO `User` VALUES ('5bf0d4515d9a2','$2y$10$TDjUAwSh4c7KeIt/suZoou2qesERJBVI18.Ub2YCTGAOEi7mYF18W','seconds@hotmeal.com',0,'2018-11-18 08:54:09','2018-11-18 08:54:12',NULL);
-INSERT INTO `User` VALUES ('5bf0d465832f0','$2y$10$G/3w4P6fK7U8xsVuoVCGHewVMUOHfpUTnAj3q2/TUa7dpOO8TQX5K','seconds@hotmeal.com',0,'2018-11-18 08:54:29','2018-11-18 08:54:32',NULL);
-INSERT INTO `User` VALUES ('5bf0d4d4c22d5','$2y$10$oTt604RZ3fMlQTXX6udKGOWe0rExvYaURJNUuKcfWH1KGeOL4OPAy','seconds@hotmeal.com',0,'2018-11-18 08:56:20','2018-11-18 08:56:23',NULL);
-INSERT INTO `User` VALUES ('5bf0d75f3ba26','newpassword','seconds@hotmeal.com',0,'2018-11-18 09:07:11','2018-11-18 09:07:14',NULL);
-INSERT INTO `User` VALUES ('5bf0d7996fa7c','newpassword','seconds@hotmeal.com',0,'2018-11-18 09:08:09','2018-11-18 09:08:12',NULL);
-INSERT INTO `User` VALUES ('5bf0d7a70a791','newpassword','seconds@hotmeal.com',0,'2018-11-18 09:08:23','2018-11-18 09:08:26',NULL);
-INSERT INTO `User` VALUES ('5bf0d7c48b1c3','newpassword','seconds@hotmeal.com',0,'2018-11-18 09:08:52','2018-11-18 09:08:55',NULL);
-INSERT INTO `User` VALUES ('5bf0d8224ed2c','$2y$10$0fnRcT0LM43VIuxRWA1ba.XPPyoXJDcT7MQsk0UHJGnLWlEmYj/92','seconds@hotmeal.com',0,'2018-11-18 09:10:26','2018-11-18 09:10:26',NULL);
 INSERT INTO `User` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 INSERT INTO `User` VALUES ('testid','$2y$10$35z4eRm2Mamv.NGKRF7Eq.ETp1GsF78DbIiZiXDh6S0j4v.Yi1G9a','jjwrubleski21@gmail.com',0,'2018-11-17 09:18:27','2018-11-17 09:18:27',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
@@ -228,4 +182,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-17 21:13:53
+-- Dump completed on 2018-11-17 21:18:29
