@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `Student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Student` (
-  `student_id` varchar(20) NOT NULL,
+  `student_id` varchar(45) NOT NULL,
   `user_id` varchar(30) NOT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
@@ -64,7 +64,8 @@ CREATE TABLE `Student` (
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`student_id`),
-  KEY `user_id_idx` (`user_id`)
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `Student_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -132,7 +133,7 @@ CREATE TABLE `User` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-18  0:25:00
+-- Dump completed on 2018-11-18  0:48:57

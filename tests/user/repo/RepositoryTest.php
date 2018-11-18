@@ -56,7 +56,7 @@ class UserRepositoryTest extends TestCase
     {
         $id = self::$repo->create('seconds@hotmeal.com', 'mahpassword');
         $before = $expectedUser = self::$repo->get($id);
-        sleep(1); // modified only stamps the time down to the nearest second, need to wait so the modified time will be different
+        sleep(1); // modified stamps the time down to the nearest second, need to wait so the modified time will be different
 
         $expectedUser = get_object_vars($expectedUser);
         $expectedUser["_password"] = "newpassword";
