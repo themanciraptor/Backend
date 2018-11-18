@@ -75,7 +75,7 @@ CREATE TABLE `Student` (
 LOCK TABLES `Student` WRITE;
 /*!40000 ALTER TABLE `Student` DISABLE KEYS */;
 INSERT INTO `Student` VALUES ('200303299','st-000001','Carl','Marks','redsocs@rus.com','Brückengasse 664','2018-11-17 17:29:26','2018-11-17 17:29:26',NULL);
-INSERT INTO `Student` VALUES ('200361084','','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
+INSERT INTO `Student` VALUES ('200361084','jw200','Jonah','Wrubleski','jjwrubleski21@gmail.com','Ma house','2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `Student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,6 +141,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES ('jw200','$2y$10$zPkDVvo0pdpfWXySkJGGXedX6Emr0.eMWdI6mAjDJDYGGV6I1j2EO','jjwrubleski21@gmail.com',0,'2018-11-18 12:19:53','2018-11-18 12:19:53',NULL);
 INSERT INTO `User` VALUES ('st-000001',NULL,'redsocs@rus.com',NULL,'2018-10-18 10:05:58','2018-10-18 10:05:58',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -154,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-18  0:09:44
+-- Dump completed on 2018-11-18  0:25:00

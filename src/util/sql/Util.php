@@ -41,7 +41,7 @@ class QueryBuilder
     public function addModified(): QueryBuilder
     {
         /**
-         * For models built using my BaseModel, can automatically add modified without any hacksing.
+         * For models built using BaseModel, can automatically add modified without any hacksing.
          * 
          * TODO: This probably is the wrong place for this.
          */
