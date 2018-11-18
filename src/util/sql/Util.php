@@ -6,6 +6,8 @@
  */
 
 // Get the current time in a format that can be submitted to sql
+require_once "src/util/sql/BaseSQL.php";
+
 function getSqlNow(): string
 {
     return date("Y-m-d H:i:s");
@@ -71,7 +73,7 @@ class QueryBuilder
         return $this;
     }
 
-    public function doQuery(closure $queryFunc): bool
+    public function doMutatorQuery(SqlInterface $db): bool
     {
         /**
          * Do the query via a custom query function. This query function must have the following signature:
@@ -99,7 +101,7 @@ class QueryBuilder
 
         $query = sprintf($this->_query, $fullStatement, $fullFilters);
 
-        return $queryFunc($query, $typeList, ...$values);
+        return $db->mutatorQuery($query, $typeList, ...$values);
     }
 }
 

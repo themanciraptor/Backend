@@ -61,9 +61,7 @@ class UserRepository
             $query->addStatement($key, "s", $value);
         }
 
-        return $query->doQuery(function($query, $typelist, ...$values): bool {
-            return self::$db->mutatorQuery($query, $typelist, ...$values
-        );});
+        return $query->doMutatorQuery(self::$db);
     }
 
     // verify a users credentials and get the appropriate id
