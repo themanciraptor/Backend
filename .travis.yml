@@ -1,3 +1,10 @@
+language: php
+php:
+ - 7.1.9
+before_script:
+ - composer install
+script:
+ - echo 0
 env:
   global:
   - 'SFTP_USER=[$User]'
