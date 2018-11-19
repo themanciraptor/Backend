@@ -1,0 +1,11 @@
+env:
+  global:
+  - 'SFTP_USER=[$User]'
+  - 'SFTP_PASSWORD=[$Password]'
+  - 'SFTP_KEY=[$SFTP_KEY]'
+after_success:
+- echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+- curl --ftp-create-dirs
+       -T filename
+       --key /tmp/sftp_rsa
+       sftp://${SFTP_USER}:${SFTP_PASSWORD}@hercules.cs.uregina.ca/public_html/SASMA/
