@@ -73,10 +73,8 @@ class AuthController extends Controller {
         if ($this->getMethod() != 'POST') {
             return;
         }
-        error_log ('>>> user');
         $_user_success = $this->_user_repo->create($this->getValueFromBody('email'), $this->getValueFromBody('password'));
         $this->authorize();
-        error_log ('>>> student');
         $_student_success = $this->_student_repo->create([
                                 'user_id' => $_SESSION['USER_ID'],
                                 'first_name' => $this->getValueFromBody('first_name'),
