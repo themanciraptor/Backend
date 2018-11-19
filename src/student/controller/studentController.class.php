@@ -21,12 +21,12 @@ class StudentController extends Controller {
     public function process() {
         switch ($this->getMethod()) {
             case 'GET':
-                $_data = $this->_repo->get($this->getPath()[1]);
+                $_data = $this->_repo->get($_SESSION['STUDENT_ID']);
                 echo $this->response(200, $_data);
                 break;
             case 'POST': 
                 $_success = $this->_repo->create([ 
-                                $this->getValueFromBody('user_id'), 
+                                $_SESSION['USER_ID'], 
                                 $this->getValueFromBody('first_name'), 
                                 $this->getValueFromBody('last_name'), 
                                 $this->getValueFromBody('email'), 
