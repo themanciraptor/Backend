@@ -45,14 +45,15 @@ class AuthController extends Controller {
         if ($this->getMethod() != 'POST' && ($this->getPath()[0] != 'login' || $this->getPath()[0] != 'register')) {
             throw new Exception('Unauthorized');
         }
-        $id = $this->_user_repo->verify($this->getValueFromBody('email'), $this->getValueFromBody('password'));
+        $user_id = $this->_user_repo->verify($this->getValueFromBody('email'), $this->getValueFromBody('password'));
         //TODO get password hash from database and throw an error if it doesn't match
-        if (!$id) {
+        if (!$user_id) {
             throw new Exception('Unauthorized');
         }
         $this->getToken();
         $_SESSION['USER_TOKEN'] = session_id();
-        $_SESSION['USER_ID'] = $id;
+        $_SESSION['USER_ID'] = $user_id;
+        $_SESSION['STUDENT_ID'] = $this->_student_repo->get($user_id)->student_id;
         return true;
     }
 
@@ -77,7 +78,6 @@ class AuthController extends Controller {
         $this->authorize();
         error_log ('>>> student');
         $_student_success = $this->_student_repo->create([
-                                'student_id' => $this->getValueFromBody('student_id'),
                                 'user_id' => $_SESSION['USER_ID'],
                                 'first_name' => $this->getValueFromBody('first_name'),
                                 'last_name' => $this->getValueFromBody('last_name'),

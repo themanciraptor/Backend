@@ -25,8 +25,7 @@ class StudentController extends Controller {
                 echo $this->response(200, $_data);
                 break;
             case 'POST': 
-                $_success = $this->_repo->create([
-                                $this->getValueFromBody('student_id'), 
+                $_success = $this->_repo->create([ 
                                 $this->getValueFromBody('user_id'), 
                                 $this->getValueFromBody('first_name'), 
                                 $this->getValueFromBody('last_name'), 
@@ -40,7 +39,6 @@ class StudentController extends Controller {
                 break;
             case 'PUT':
                 $_success = $this->_repo->update($_SESSION['USER_ID'], [
-                                $this->getValueFromBody('student_id'), 
                                 $this->getValueFromBody('first_name'), 
                                 $this->getValueFromBody('last_name'), 
                                 $this->getValueFromBody('email'), 
