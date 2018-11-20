@@ -42,6 +42,13 @@ class AuthController extends Controller {
         authorizeHelper() : authorizes an unauthorized user
     */
     private function authorize() {
+        header("Access-Control-Allow-Origin: *");
+        header('Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token');
+        if ($this->getMethod() == 'OPTIONS') {
+            echo $this->response(201);
+            return true;
+        }
         if ($this->getMethod() != 'POST' && ($this->getPath()[0] != 'login' || $this->getPath()[0] != 'register')) {
             throw new Exception('Unauthorized');
         }
@@ -69,6 +76,13 @@ class AuthController extends Controller {
         register() : registers a new user
     */
     public function register() {
+        header("Access-Control-Allow-Origin: http://localhost:8000, localhost:8000");
+            header('Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS');
+            header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token');
+        if ($this->getMethod() == 'OPTIONS') {
+            echo $this->response(201);
+            return;
+        }
         if ($this->getMethod() != 'POST') {
             return;
         }

@@ -33,7 +33,7 @@ try {
     switch ($auth->getPath()[0]) {
         case 'register':
         case 'login': 
-            echo $auth->response(201);
+            echo $auth->process();
             break;
         case 'logout': 
             $auth->deauthorize();

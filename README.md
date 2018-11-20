@@ -30,3 +30,43 @@ Scripts are written under the assumption that you have a dedicated git user in y
     USE SASMA;
     SELECT * FROM User;
     ```
+
+## Setup Apache
+1. Install apache2 if it isn't installed yet.
+2. Add `rewrite` module. On debian-linux: `a2enmod rewrite`
+3. Add the following configuration under the security model section:
+    ```
+    <VirtualHost *:80>
+        ServerName sasma
+
+        DocumentRoot /srv/SASMA
+
+        <Directory /srv/SASMA>
+            RewriteEngine on
+
+            # Don't rewrite files or directories
+            RewriteCond %{REQUEST_FILENAME} -f [OR]
+            RewriteCond %{REQUEST_FILENAME} -d
+            RewriteRule ^ - [L]
+
+            # Rewrite everything else to index.html
+            # to allow html5 state links
+            RewriteRule ^ index.html [L]
+        </Directory>
+    </VirtualHost>
+    ```
+4. Systemctl restart apache2
+5. Copy into /srv/SASMA the index.php, src folder, everything in the compiled dist/frontend folder. I used scripts, each run from their respective root project directories, to make it easy:
+```
+# Backend
+cp ./index.php /srv/SASMA
+cp -rf ./src /srv/SASMA
+php -S localhost:8000 index.php
+
+```
+```
+# Frontend
+ng build --prod
+cp -rf ./dist/frontend/* /srv/SASMA/
+```
+the folder does not need to be /srv/SASMA, that's just the one I chose
