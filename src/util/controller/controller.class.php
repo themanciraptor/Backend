@@ -57,6 +57,12 @@ abstract class Controller {
         Params : $data object and $statusCode integer (200, 404, 500, etc)
     */
     public function response($statusCode, $data = null) {
+        header("Access-Control-Allow-Origin: *");
+        header('Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: X-Requested-With, content-type, X-Token, x-token');
+        if ($this->getMethod() == 'OPTIONS') {
+            return;
+        }
         header("HTTP/1.1 " . $statusCode . " " . $this->getStatus($statusCode));
         echo json_encode($data);
     }
