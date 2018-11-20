@@ -69,3 +69,4 @@ php -S localhost:8000 index.php
 ng build --prod
 cp -rf ./dist/frontend/* /srv/SASMA/
 ```
+the folder does not need to be /srv/SASMA, that's just the one I chose
