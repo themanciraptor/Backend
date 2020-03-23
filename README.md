@@ -2,7 +2,7 @@
 The Avengers!
 
 # Purpose
-To be a shitty backend written in PHP
+To be a backend written in PHP
 
 # Setting up local development
 1. Install Composer https://getcomposer.org/doc/00-intro.md
